@@ -1,0 +1,365 @@
+:root {
+  --bg: #e8efef;
+  --panel: rgba(255, 255, 255, 0.86);
+  --card: rgba(255, 255, 255, 0.97);
+  --ink: #161a22;
+  --muted: #687587;
+  --teal: #bfe8e4;
+  --teal-strong: #79c7c5;
+  --lavender: #e7dbfb;
+  --ink-soft: #283241;
+  --outline: rgba(205, 217, 222, 0.98);
+  --radius-xl: 30px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --shadow: 0 18px 45px rgba(25, 34, 45, 0.1);
+  --shadow-hover: 0 24px 55px rgba(25, 34, 45, 0.16);
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(191, 232, 228, 0.45), transparent 28%),
+    radial-gradient(circle at top right, rgba(231, 219, 251, 0.4), transparent 24%),
+    linear-gradient(180deg, #f3f7f8 0%, var(--bg) 100%);
+  color: var(--ink);
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.app-shell {
+  padding: 1.15rem 1.15rem 2rem;
+}
+
+.app-sidebar {
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+  border-right: 1px solid var(--outline);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.75);
+}
+
+.sidebar-header {
+  margin-bottom: 1rem;
+}
+
+.sidebar-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.sidebar-note,
+.chart-note,
+.muted-text {
+  color: var(--muted);
+}
+
+.sidebar-section-label {
+  margin: 1rem 0 0.4rem;
+  color: #415063;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sidebar-tip,
+.hero-card,
+.soft-card,
+.note-card,
+.detail-card,
+.bslib-value-box {
+  background: var(--card);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.sidebar-tip:hover,
+.hero-card:hover,
+.soft-card:hover,
+.note-card:hover,
+.detail-card:hover,
+.bslib-value-box:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(121, 199, 197, 0.55);
+}
+
+.sidebar-tip {
+  margin-top: 1rem;
+  padding: 1rem 1rem 0.2rem;
+}
+
+.hero-card {
+  margin-bottom: 1rem;
+  padding: 1.55rem 1.65rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -60px -60px auto;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(121, 199, 197, 0.22) 0%, rgba(121, 199, 197, 0) 72%);
+  pointer-events: none;
+}
+
+.app-title {
+  font-size: 2.55rem;
+  font-weight: 750;
+  letter-spacing: -0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.app-subtitle {
+  color: var(--muted);
+  font-size: 1.06rem;
+  max-width: 72rem;
+  margin-bottom: 1rem;
+}
+
+.micro-card-row,
+.story-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.micro-card-row {
+  margin-bottom: 1rem;
+}
+
+.micro-card {
+  min-width: 135px;
+  background: linear-gradient(180deg, #f7fbfb, #edf7f7);
+  border: 1px solid #d7ecea;
+  border-radius: 18px;
+  padding: 0.8rem 0.95rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.micro-card strong {
+  display: block;
+  font-size: 1.22rem;
+  letter-spacing: -0.03em;
+}
+
+.micro-card-dark {
+  background: linear-gradient(180deg, #1b2330, #0f1724);
+  border-color: #1c2736;
+  color: #f7fafc;
+}
+
+.micro-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.micro-card-dark .micro-label {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.story-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--outline);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 0.48rem 0.82rem;
+}
+
+.story-chip-active {
+  background: linear-gradient(180deg, #def3f0, #cceae7);
+  color: #19494a;
+  border-color: #c5e6e3;
+}
+
+.soft-card,
+.note-card {
+  padding: 0.9rem 1rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.detail-card {
+  padding: 1rem 1.1rem;
+}
+
+.soft-card .card-header {
+  background: transparent;
+  border-bottom: 0;
+  font-weight: 720;
+  font-size: 1.05rem;
+  padding: 0.3rem 0 0.22rem;
+}
+
+.soft-card .card-body {
+  padding-top: 0;
+}
+
+.note-card h4 {
+  margin-bottom: 0.55rem;
+  font-size: 1.05rem;
+}
+
+.note-card ul {
+  margin-bottom: 0;
+}
+
+.bslib-value-box {
+  border-radius: 24px !important;
+  min-height: 250px;
+  overflow: hidden;
+}
+
+.bslib-value-box,
+.bslib-value-box.bg-gradient-blue-purple,
+.bslib-value-box.bg-gradient-indigo-purple,
+.bslib-value-box.bg-gradient-green-teal,
+.bslib-value-box.bg-gradient-orange-red {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 249, 249, 0.96)) !important;
+  color: var(--ink) !important;
+}
+
+.bslib-value-box .value-box-title,
+.bslib-value-box .value-box-value,
+.bslib-value-box .value-box-showcase,
+.bslib-value-box .text-muted {
+  color: var(--ink) !important;
+}
+
+.bslib-value-box .value-box-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  opacity: 1 !important;
+}
+
+.bslib-value-box .value-box-value {
+  font-size: 2.35rem;
+  letter-spacing: -0.04em;
+  font-weight: 780;
+  line-height: 1.05;
+}
+
+.bslib-value-box .value-box-grid {
+  padding: 1.45rem 1.5rem !important;
+}
+
+.nav-tabs {
+  border-bottom: 0;
+  gap: 0.38rem;
+  margin-bottom: 1rem;
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid var(--outline);
+  border-radius: 999px !important;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.88);
+  padding: 0.62rem 0.95rem;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.nav-tabs .nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(25, 34, 45, 0.09);
+}
+
+.nav-tabs .nav-link.active {
+  background: linear-gradient(180deg, #def3f0, #cceae7);
+  color: #19494a;
+  border-color: #c5e6e3;
+}
+
+.form-control,
+.form-select,
+.selectize-input,
+.irs--shiny .irs-bar,
+.irs--shiny .irs-single,
+.irs--shiny .irs-from,
+.irs--shiny .irs-to {
+  border-radius: 16px !important;
+}
+
+.selectize-input,
+.form-control,
+.form-select {
+  border-color: var(--outline) !important;
+  box-shadow: none !important;
+}
+
+.irs--shiny .irs-bar,
+.irs--shiny .irs-single,
+.irs--shiny .irs-from,
+.irs--shiny .irs-to {
+  background: var(--teal-strong) !important;
+  border-color: var(--teal-strong) !important;
+}
+
+.irs--shiny .irs-handle {
+  border-color: var(--teal-strong) !important;
+  background: #ffffff !important;
+}
+
+.shiny-data-grid {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.js-plotly-plot .plotly .modebar {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(36, 44, 56, 0.08);
+}
+
+.card {
+  border: 0;
+  background: transparent;
+}
+
+.tab-content {
+  padding-top: 0.1rem;
+}
+
+.soft-card .card-header {
+  font-size: 1.12rem;
+}
+
+.soft-card .chart-note {
+  font-size: 0.95rem;
+  margin-top: 0.9rem;
+  margin-bottom: 0.15rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(205, 217, 222, 0.7);
+}
+
+.soft-card .html-fill-item,
+.soft-card .html-widget,
+.soft-card .plotly,
+.soft-card .plotly.html-widget,
+.soft-card .shiny-bound-output:has(.plotly),
+.soft-card .shiny-bound-output {
+  min-height: 460px;
+}
+
+.soft-card:has(.shiny-data-grid) .shiny-bound-output {
+  min-height: unset;
+}
+
+.soft-card .plotly .main-svg {
+  border-radius: 20px;
+}

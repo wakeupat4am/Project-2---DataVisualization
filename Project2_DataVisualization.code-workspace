@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Project2_DataVisualization",
+			"path": "."
+		},
+		{
+			"name": "mongodump_full_snapshot",
+			"path": "../../Downloads/mongodump_full_snapshot"
+		}
+	],
+	"settings": {}
+}

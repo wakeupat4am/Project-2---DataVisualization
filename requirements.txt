@@ -1,0 +1,8 @@
+shiny>=0.10.2
+shinywidgets>=0.3.2
+shinyswatch>=0.3.1
+pandas>=2.2.2
+numpy>=1.26.4
+plotly>=5.22.0
+networkx>=3.3
+pycountry>=24.6.1

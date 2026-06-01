@@ -1,73 +1,133 @@
-# Project 2: AI Incident Data Visualization
+# AI Incident Database Explorer
 
-## Project Description
-This project analyzes an AI incident dataset to understand how the nature of AI-related harm has changed over time. The dataset contains incident-level records, linked source reports, and several classification files that describe each incident from different perspectives such as risk type, intent, technical failure mode, sector, geography, and harm severity.
+Interactive Python Shiny dashboard for the AI Incident Database.
 
-The central goal of the project is to build a visual story around this question:
+**Presentation story:**  
+*From AI Incidents to Public Attention: How AI Risks Evolve and Spread Over Time.*
 
-**How has AI harm evolved from isolated technical failures into broader social, political, and intentional misuse?**
+The app is designed for a 6-minute demo that moves from overall visibility, to risk evolution, to attention concentration, to geography and network context.
 
-The working thesis for the project is:
+## Dashboard Story
+The dashboard answers four connected questions:
 
-**Since 2023, the center of gravity of AI harm has shifted from accidental system failures toward intentional misuse, misinformation, and socially scaled harms.**
+1. **How visible are AI incidents over time?**
+2. **Which AI risks are becoming more visible?**
+3. **Which incidents and source domains dominate public attention?**
+4. **Where do AI incidents appear, and how are incidents connected to risks and sources?**
 
-## Dataset Overview
-The project uses the files in the [data](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data) folder.
+It explicitly separates:
+- **Incident count**: how many AI incidents are recorded
+- **Report count**: how much reporting/public attention sits behind those incidents
 
-Main files:
-- [incidents.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/incidents.csv): core incident table with one row per incident
-- [reports.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/reports.csv): linked articles and source reports for each incident
-- [classifications_MIT.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/classifications_MIT.csv): high-level risk taxonomy, timing, and intent
-- [classifications_GMF.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/classifications_GMF.csv): AI goals, technologies, and technical failure modes
-- [classifications_CSETv1.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/classifications_CSETv1.csv): detailed harm, sector, autonomy, geography, and public sector labels
+## Project Structure
+- [app.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/app.py): main Python Shiny app
+- [requirements.txt](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/requirements.txt): Python dependencies
+- [assets/styles.css](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/assets/styles.css): custom light dashboard styling
+- [src/data_loader.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/data_loader.py): CSV loading utilities
+- [src/preprocess.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/preprocess.py): robust preprocessing, auto-detection, joins, and aggregates
+- [src/visualizations.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/visualizations.py): reusable Plotly chart builders
+- [data](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data): expected data folder
 
-Supporting files:
-- [duplicates.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/duplicates.csv): duplicate incident mapping
-- [submissions.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/submissions.csv): incoming submissions
-- [quickadd.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/quickadd.csv): candidate records
+## Expected Data Files
+The app looks for CSV files in `data/` and is designed to tolerate missing optional files.
 
-## Project Objective
-The objective is to produce a clear visual narrative that explains:
-- how AI incidents have grown over time
-- how the dominant categories of harm have shifted
-- how intentional misuse compares with unintentional failure
-- which technical failure modes are most associated with recent incidents
-- which cases receive the most public and media attention
+Primary files:
+- `incidents.csv`: one row per AI incident
+- `reports.csv`: one row per linked report/article
+- `classifications_*.csv`: taxonomy files such as MIT, GMF, CSET
 
-## Initial Plan
-### 1. Understand and prepare the data
-- Inspect the structure of the main incident, report, and classification files
-- Clean join keys between `incident_id` and `Incident ID`
-- Parse linked report IDs from the incident table
-- Check duplicates, missing values, and coverage across classification tables
+Optional files:
+- `duplicates.csv`
+- `submissions.csv`
+- `quickadd.csv`
 
-### 2. Build the core analysis tables
-- Create an incident-level analysis table from [incidents.csv](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data/incidents.csv)
-- Join MIT classifications for risk domain, timing, and intent
-- Join GMF classifications for technical goals and failure modes
-- Join CSET classifications for harm context, sector, and severity
+If some files or columns are missing, the app will show a helpful note and degrade gracefully instead of crashing.
 
-### 3. Develop the main story visuals
-- Chart incident growth over time
-- Show risk-domain shifts by year
-- Compare intentional vs unintentional incidents
-- Visualize technical failure modes behind recent harms
-- Highlight the most-covered incidents using linked report counts
+## Preprocessing Logic
+The app automatically:
+- loads every CSV in `data/`
+- standardizes column names to `snake_case`
+- detects likely incident IDs, report IDs, dates, titles, descriptions, URLs, domains, country/location columns, and risk labels
+- extracts year fields from usable date columns
+- extracts source domains from URLs when needed
+- parses incident-to-report links from `incidents.csv`
+- joins incidents to reports when possible
+- joins incidents to classification files when possible
+- creates aggregates for:
+  - incidents per year
+  - reports per year
+  - risk categories by year
+  - reports per incident
+  - top source domains
+  - country/location counts
 
-### 4. Refine the narrative
-- Identify the 3-5 strongest insights
-- Remove weak or redundant charts
-- Focus the final presentation on one central argument supported by a small number of strong visuals
+## Dashboard Tabs
+### 1. Overview
+Shows the big picture:
+- KPI cards
+- dual-line trend for incidents vs reports
+- rolling average trend
+- filtered incident table
 
-### 5. Deliver final outputs
-- A polished notebook with step-by-step analysis
-- Final charts for presentation or dashboard use
-- A short written narrative explaining the main findings
+### 2. Risk Evolution
+Shows how categories change over time:
+- year × risk category heatmap
+- stacked area composition chart
+- bump/rank chart
+- risk summary table
 
-## Current Working Story
-The most promising story direction is:
+### 3. Attention & Sources
+Shows inequality in public attention:
+- top incidents by linked reports
+- long-tail histogram of reports per incident
+- top source domains
+- Lorenz curve for concentration
+- incident detail card
 
-**AI incidents are no longer dominated only by technical malfunctions. In recent years, the dataset shows a stronger pattern of deliberate misuse, misinformation, deepfakes, fraud, and other socially scaled harms.**
+### 4. Geographic & Advanced View
+Shows spatial and relational structure:
+- world map / globe projection
+- top countries side chart
+- incident–risk–source network graph
 
-## Project Files
-- Draft analysis notebook: [ai_incidents_story_draft.ipynb](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/notebooks/ai_incidents_story_draft.ipynb)
+## Visualization Choices
+- **Dual-line chart**: distinguishes incident volume from reporting volume
+- **Heatmap**: shows temporal shifts in risk visibility cleanly
+- **Stacked area chart**: emphasizes composition rather than only totals
+- **Lorenz curve**: makes attention inequality visible
+- **World map**: reveals where incidents are located when metadata is available
+- **Network graph**: links incidents to both risk categories and media sources
+
+## Data Notes
+- The incident database reflects **reported/documented incidents**, not all real-world incidents.
+- **Report count is a visibility measure**, not a direct measure of harm severity.
+- Geographic views depend on available location metadata and exclude missing/ambiguous locations.
+- Classification coverage varies across MIT, GMF, and CSET files.
+
+## Run Locally
+Create and activate a virtual environment, then install dependencies:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Run the app:
+
+```bash
+shiny run app.py
+```
+
+Then open the local URL shown in the terminal.
+
+## Customization Notes
+You can safely modify:
+- chart logic in [src/visualizations.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/visualizations.py)
+- column detection and joins in [src/preprocess.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/preprocess.py)
+- styling in [assets/styles.css](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/assets/styles.css)
+
+If you want to add more advanced analytics later, the easiest next extensions are:
+- animated timeline views
+- TF-IDF keyword/topic explorer
+- a refined geographic layer with manual geocoding or cleaned location mapping
