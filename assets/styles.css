@@ -125,15 +125,10 @@ body {
   margin-bottom: 1rem;
 }
 
-.micro-card-row,
-.story-chip-row {
+.micro-card-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
-}
-
-.micro-card-row {
-  margin-bottom: 1rem;
 }
 
 .micro-card {
@@ -171,23 +166,6 @@ body {
   color: rgba(255, 255, 255, 0.72);
 }
 
-.story-chip {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  border: 1px solid var(--outline);
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--muted);
-  font-size: 0.85rem;
-  padding: 0.48rem 0.82rem;
-}
-
-.story-chip-active {
-  background: linear-gradient(180deg, #def3f0, #cceae7);
-  color: #19494a;
-  border-color: #c5e6e3;
-}
-
 .soft-card,
 .note-card {
   padding: 0.9rem 1rem 1rem;
@@ -217,6 +195,35 @@ body {
 
 .note-card ul {
   margin-bottom: 0;
+}
+
+.note-card-inline {
+  margin-bottom: 0;
+  box-shadow: none;
+  border-radius: var(--radius-md);
+}
+
+.data-notes-accordion {
+  margin-top: 1.25rem;
+}
+
+.data-notes-accordion .accordion-item {
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.data-notes-accordion .accordion-button {
+  font-weight: 650;
+  color: var(--ink-soft);
+}
+
+.network-card .html-fill-item,
+.network-card .plotly,
+.network-card .shiny-bound-output {
+  min-height: 540px !important;
 }
 
 .bslib-value-box {

@@ -273,17 +273,8 @@ app_ui = ui.page_sidebar(
             ui.h1(APP_TITLE, class_="app-title"),
             ui.p(APP_SUBTITLE, class_="app-subtitle"),
             ui.output_ui("hero_microstats"),
-            ui.div(
-                ui.span("Story flow", class_="story-chip"),
-                ui.span("Overview", class_="story-chip story-chip-active"),
-                ui.span("Risk Evolution", class_="story-chip"),
-                ui.span("Attention", class_="story-chip"),
-                ui.span("Geography + Network", class_="story-chip"),
-                class_="story-chip-row",
-            ),
             class_="hero-card",
         ),
-        ui.output_ui("data_notes"),
         ui.navset_tab(
             ui.nav_panel(
                 "Overview",
@@ -312,7 +303,10 @@ app_ui = ui.page_sidebar(
                 ui.card(
                     ui.card_header("Filtered incidents"),
                     ui.output_data_frame("incident_table"),
-                    ui.p("This table updates from the shared filters and keeps the story grounded in examples.", class_="chart-note"),
+                    ui.p(
+                        "Sorted by year (newest first). Use later tabs to explore attention and risk mix.",
+                        class_="chart-note",
+                    ),
                     class_="soft-card",
                 ),
             ),
@@ -375,15 +369,15 @@ app_ui = ui.page_sidebar(
                         class_="soft-card",
                     ),
                     ui.card(
-                        ui.card_header("Source domains"),
-                        output_widget("source_bar"),
-                        ui.p("This shows which publishers appear most often in the evidence layer.", class_="chart-note"),
-                        class_="soft-card",
-                    ),
-                    ui.card(
                         ui.card_header("Attention concentration"),
                         output_widget("lorenz_curve"),
                         ui.p("The Lorenz curve highlights whether reporting is evenly distributed or highly concentrated.", class_="chart-note"),
+                        class_="soft-card",
+                    ),
+                    ui.card(
+                        ui.card_header("Source domains"),
+                        output_widget("source_bar"),
+                        ui.p("This shows which publishers appear most often in the evidence layer.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     col_widths=[4, 4, 4],
@@ -413,10 +407,18 @@ app_ui = ui.page_sidebar(
                     ui.card_header("Incident–Risk–Source network"),
                     output_widget("network_graph"),
                     ui.p("This advanced view connects incidents to both risk categories and reporting domains.", class_="chart-note"),
-                    class_="soft-card",
+                    class_="soft-card network-card",
                 ),
             ),
             id="main_tabs",
+        ),
+        ui.accordion(
+            ui.accordion_panel(
+                "Data notes & limitations",
+                ui.output_ui("data_notes"),
+            ),
+            open=False,
+            class_="data-notes-accordion",
         ),
         class_="app-shell",
     ),
@@ -493,35 +495,26 @@ def server(input, output, session):
             ui.div(ui.span("Incidents", class_="micro-label"), ui.strong(f"{summary['total_incidents']:,}"), class_="micro-card"),
             ui.div(ui.span("Reports", class_="micro-label"), ui.strong(f"{summary['total_reports']:,}"), class_="micro-card"),
             ui.div(ui.span("Years", class_="micro-label"), ui.strong(summary["year_range"]), class_="micro-card"),
-            ui.div(ui.span("Taxonomy", class_="micro-label"), ui.strong(f"{summary['risk_categories']} risk types"), class_="micro-card micro-card-dark"),
+            ui.div(
+                ui.span("Category", class_="micro-label"),
+                ui.strong(f"{summary['risk_categories']} categories"),
+                class_="micro-card micro-card-dark",
+            ),
             class_="micro-card-row",
         )
 
     @output
     @render.ui
     def data_notes():
-        if not prepared.notes:
-            return ui.div(
-                ui.h4("Data Notes & Limitations"),
-                ui.tags.ul(
-                    ui.tags.li("This database contains reported or documented AI incidents, not every real-world incident."),
-                    ui.tags.li("Report count reflects public attention and media visibility, not necessarily severity."),
-                    ui.tags.li("Geographic views depend on available location metadata."),
-                    ui.tags.li("Classification coverage varies across MIT, GMF, and CSET taxonomies."),
-                ),
-                class_="note-card",
-            )
-
         items = [
             "This database contains reported or documented AI incidents, not every real-world incident.",
             "Report count reflects public attention and media visibility, not necessarily severity.",
-            "Geographic views depend on available location metadata.",
+            "Geographic views depend on available location metadata (~18% of incidents have location).",
             "Classification coverage varies across MIT, GMF, and CSET taxonomies.",
         ] + prepared.notes[:6]
         return ui.div(
-            ui.h4("Data Notes & Limitations"),
             ui.tags.ul(*[ui.tags.li(item) for item in items]),
-            class_="note-card",
+            class_="note-card note-card-inline",
         )
 
     @output
@@ -541,7 +534,7 @@ def server(input, output, session):
     @output
     @render.data_frame
     def incident_table():
-        frame = attention().sort_values(["report_count", "incident_year"], ascending=[False, False]).copy()
+        frame = attention().sort_values(["incident_year", "incident_title"], ascending=[False, True]).copy()
         if frame.empty:
             frame = pd.DataFrame({"message": ["No incidents match the current filters."]})
         else:
@@ -554,7 +547,7 @@ def server(input, output, session):
                 }
             )[["Title", "Year", "Report count", "Description"]]
             frame = frame.head(50)
-        return DataGrid(frame, summary="Top 50 filtered incidents")
+        return DataGrid(frame, summary="Filtered incidents (newest year first, up to 50 rows)")
 
     @output
     @render_plotly

@@ -9,16 +9,25 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 
+# Dashboard theme: teal, ink, sage, muted (matches assets/styles.css)
 PALETTE = [
     "#79c7c5",
     "#2b2d42",
     "#95d5b2",
-    "#f4a261",
-    "#cdb4db",
     "#4a5568",
+    "#bfe8e4",
+    "#283241",
     "#84a59d",
-    "#ffb4a2",
+    "#687587",
 ]
+
+THEME_SCALE = ["#dceef0", "#79c7c5", "#2b2d42"]
+
+NODE_COLORS = {
+    "Incident": "#2b2d42",
+    "Risk": "#79c7c5",
+    "Source": "#4a5568",
+}
 
 
 RISK_ABBREVIATIONS = {
@@ -274,7 +283,15 @@ def long_tail_histogram(attention: pd.DataFrame) -> go.Figure:
 def source_domain_bar(domains: pd.DataFrame) -> go.Figure:
     if domains.empty:
         return empty_figure("No source domains are available for the current filters.")
-    fig = px.bar(domains.sort_values("count"), x="count", y="source_domain", orientation="h", color="count")
+    frame = domains.sort_values("count")
+    fig = px.bar(
+        frame,
+        x="count",
+        y="source_domain",
+        orientation="h",
+        color="count",
+        color_continuous_scale=THEME_SCALE,
+    )
     fig.update_layout(
         template="plotly_white",
         margin=dict(l=20, r=20, t=30, b=20),
@@ -391,7 +408,14 @@ def country_bar(country_counts: pd.DataFrame) -> go.Figure:
     if country_counts.empty:
         return empty_figure("No country counts are available.")
     frame = country_counts.sort_values("count").tail(12)
-    fig = px.bar(frame, x="count", y="country_label", orientation="h", color="count")
+    fig = px.bar(
+        frame,
+        x="count",
+        y="country_label",
+        orientation="h",
+        color="count",
+        color_continuous_scale=THEME_SCALE,
+    )
     fig.update_layout(
         template="plotly_white",
         margin=dict(l=20, r=20, t=20, b=20),
@@ -399,6 +423,7 @@ def country_bar(country_counts: pd.DataFrame) -> go.Figure:
         xaxis_title="Count",
         yaxis_title="Country",
     )
+    fig.update_traces(hovertemplate="Country %{y}<br>Count %{x}<extra></extra>")
     return fig
 
 
@@ -417,18 +442,25 @@ def network_figure(network_frame: pd.DataFrame, max_incidents: int = 25) -> go.F
         return empty_figure("Current filters leave too few nodes for the network view.")
 
     graph = nx.Graph()
+    node_sizes = {"Incident": 22, "Risk": 30, "Source": 26}
     for _, row in frame.iterrows():
         incident_node = f"incident::{row['incident_id']}"
         graph.add_node(
             incident_node,
             label=row["incident_title"][:80] or row["incident_id"],
             node_type="Incident",
-            color=PALETTE[1],
-            size=18,
+            color=NODE_COLORS["Incident"],
+            size=node_sizes["Incident"],
         )
         if row.get("risk_category"):
             risk_node = f"risk::{row['risk_category']}"
-            graph.add_node(risk_node, label=row["risk_category"], node_type="Risk", color=PALETTE[0], size=24)
+            graph.add_node(
+                risk_node,
+                label=short_label(row["risk_category"], 28),
+                node_type="Risk",
+                color=NODE_COLORS["Risk"],
+                size=node_sizes["Risk"],
+            )
             graph.add_edge(incident_node, risk_node)
         if row.get("source_domain"):
             source_node = f"source::{row['source_domain']}"
@@ -436,15 +468,15 @@ def network_figure(network_frame: pd.DataFrame, max_incidents: int = 25) -> go.F
                 source_node,
                 label=row["source_domain"],
                 node_type="Source",
-                color=PALETTE[4],
-                size=20,
+                color=NODE_COLORS["Source"],
+                size=node_sizes["Source"],
             )
             graph.add_edge(incident_node, source_node)
 
     if len(graph.nodes) == 0:
         return empty_figure("The current network selection contains no nodes.")
 
-    pos = nx.spring_layout(graph, seed=7, k=1.2 / math.sqrt(max(len(graph.nodes), 1)))
+    pos = nx.spring_layout(graph, seed=7, k=2.4 / math.sqrt(max(len(graph.nodes), 1)), iterations=80)
     edge_x = []
     edge_y = []
     for source, target in graph.edges():
@@ -458,50 +490,67 @@ def network_figure(network_frame: pd.DataFrame, max_incidents: int = 25) -> go.F
         y=edge_y,
         mode="lines",
         hoverinfo="none",
-        line=dict(width=1, color="#d9e6e8"),
+        line=dict(width=2.2, color="rgba(121, 199, 197, 0.55)"),
         showlegend=False,
     )
 
-    node_x = []
-    node_y = []
-    node_text = []
-    node_color = []
-    node_size = []
-    node_type = []
-    for node, attrs in graph.nodes(data=True):
-        x, y = pos[node]
-        node_x.append(x)
-        node_y.append(y)
-        node_text.append(f"{attrs['node_type']}: {attrs['label']}")
-        node_color.append(attrs["color"])
-        node_size.append(attrs["size"])
-        node_type.append(attrs["node_type"])
+    traces = [edge_trace]
+    for node_type, color in NODE_COLORS.items():
+        xs, ys, texts, sizes = [], [], [], []
+        for node, attrs in graph.nodes(data=True):
+            if attrs["node_type"] != node_type:
+                continue
+            x, y = pos[node]
+            xs.append(x)
+            ys.append(y)
+            texts.append(f"{node_type}: {attrs['label']}")
+            sizes.append(attrs["size"])
+        if not xs:
+            continue
+        traces.append(
+            go.Scatter(
+                x=xs,
+                y=ys,
+                mode="markers",
+                name=node_type,
+                text=texts,
+                hovertemplate="%{text}<extra></extra>",
+                marker=dict(
+                    color=color,
+                    size=sizes,
+                    line=dict(color="#ffffff", width=2),
+                    opacity=0.95,
+                ),
+            )
+        )
 
-    node_trace = go.Scatter(
-        x=node_x,
-        y=node_y,
-        mode="markers",
-        text=node_text,
-        hovertemplate="%{text}<extra></extra>",
-        marker=dict(color=node_color, size=node_size, line=dict(color="white", width=1.5)),
-        showlegend=False,
-    )
-
-    fig = go.Figure(data=[edge_trace, node_trace])
+    fig = go.Figure(data=traces)
     fig.update_layout(
         template="plotly_white",
-        margin=dict(l=10, r=10, t=20, b=10),
-        xaxis=dict(visible=False),
-        yaxis=dict(visible=False),
+        margin=dict(l=10, r=10, t=40, b=10),
+        height=520,
+        xaxis=dict(visible=False, showgrid=False),
+        yaxis=dict(visible=False, showgrid=False),
+        plot_bgcolor="#f7fbfb",
+        paper_bgcolor="rgba(0,0,0,0)",
+        legend=dict(
+            orientation="h",
+            y=-0.08,
+            x=0,
+            title=None,
+            bgcolor="rgba(255,255,255,0.85)",
+            bordercolor="#cdd9de",
+            borderwidth=1,
+        ),
         annotations=[
             dict(
-                text="Incident nodes connect to risk categories and source domains.",
+                text="Dark = incidents · Teal = risk categories · Gray = source domains",
                 xref="paper",
                 yref="paper",
                 x=0.01,
-                y=1.05,
+                y=1.04,
                 showarrow=False,
-                font=dict(size=12, color="#5f6c7b"),
+                font=dict(size=12, color="#687587"),
             )
         ],
     )

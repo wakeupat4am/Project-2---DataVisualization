@@ -417,7 +417,7 @@ def build_filtered_context(
         pattern = str(keyword).strip().lower()
         if pattern:
             incidents = incidents[
-                incidents["search_text"].fillna("").str.lower().str.contains(pattern, na=False)
+                incidents["search_text"].fillna("").str.lower().str.contains(pattern, na=False, regex=False)
             ]
 
     if selected_risks:
