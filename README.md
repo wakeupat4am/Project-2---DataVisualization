@@ -121,6 +121,29 @@ shiny run app.py
 
 Then open the local URL shown in the terminal.
 
+## NLP Processing Pipeline
+Build processed datasets for TF-IDF models, transformer fine-tuning, clustering, and dashboard analysis:
+
+```bash
+python process_data.py --data-dir data --output-dir processed_data --split 80/20
+```
+
+For a train/validation/test split:
+
+```bash
+python process_data.py --data-dir data --output-dir processed_data --split 70/15/15
+```
+
+The pipeline writes:
+- `processed_data/report_level_processed.csv`
+- `processed_data/incident_level_processed.csv`
+- `processed_data/classification_ready.csv`
+- `processed_data/classification_train.csv`
+- `processed_data/classification_test.csv`
+- `processed_data/classification_val.csv` when a validation split is requested
+
+Splits are assigned back to `incident_id`, so all reports from the same incident stay in the same split. When one report is linked to multiple incidents, those incidents are split together to avoid duplicated source text across train/test.
+
 ## Customization Notes
 You can safely modify:
 - chart logic in [src/visualizations.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/visualizations.py)
