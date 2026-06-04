@@ -170,6 +170,23 @@ python train_distilbert.py --target mit_risk_domain --max-train-samples 32 --max
 
 The script uses `distilbert-base-uncased`, runs on GPU when available, saves the fine-tuned model/tokenizer, label mapping, metrics JSON, classification report CSV, test predictions CSV, and confusion matrix PNG under `model_outputs/distilbert_<target>/`.
 
+## Unsupervised Theme Discovery
+Discover hidden themes and clusters in incident/report text with Sentence-BERT embeddings:
+
+```bash
+python cluster_incidents.py --data-path processed_data/report_level_processed.csv --output-dir cluster_outputs/sbert_report_clusters
+```
+
+For a fast smoke test without downloading a transformer model:
+
+```bash
+python cluster_incidents.py --embedding-backend tfidf-svd --reduction-method pca --cluster-method kmeans --max-records 200 --output-dir /tmp/ai_incident_cluster_smoke
+```
+
+The clustering pipeline saves dashboard-ready records, cluster summaries, keywords, metadata distributions, 2D scatter plots, cluster-size charts, and a timeline chart when year metadata is available.
+
+KMeans is the default clustering method; `--cluster-method hdbscan` is also supported when the optional `hdbscan` package is installed.
+
 ## Customization Notes
 You can safely modify:
 - chart logic in [src/visualizations.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/visualizations.py)
