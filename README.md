@@ -144,6 +144,17 @@ The pipeline writes:
 
 Splits are assigned back to `incident_id`, so all reports from the same incident stay in the same split. When one report is linked to multiple incidents, those incidents are split together to avoid duplicated source text across train/test.
 
+## TF-IDF Baseline Model
+Train an explainable TF-IDF + Logistic Regression classifier:
+
+```bash
+python train_tfidf_logreg.py --data-path processed_data/classification_ready.csv --target mit_risk_domain
+```
+
+Change the target with `--target`, or edit `TARGET_LABEL_COLUMN` near the top of `train_tfidf_logreg.py`.
+
+The baseline saves a `.joblib` model, metrics JSON, classification report CSV, test predictions CSV, and confusion matrix PNG under `model_outputs/tfidf_logreg_<target>/`.
+
 ## Customization Notes
 You can safely modify:
 - chart logic in [src/visualizations.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/visualizations.py)
