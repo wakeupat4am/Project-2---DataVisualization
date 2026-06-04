@@ -155,6 +155,21 @@ Change the target with `--target`, or edit `TARGET_LABEL_COLUMN` near the top of
 
 The baseline saves a `.joblib` model, metrics JSON, classification report CSV, test predictions CSV, and confusion matrix PNG under `model_outputs/tfidf_logreg_<target>/`.
 
+## DistilBERT Fine-Tuning
+Train a transformer classifier for comparison against the TF-IDF baseline:
+
+```bash
+python train_distilbert.py --data-path processed_data/classification_ready.csv --target mit_risk_domain
+```
+
+For a quick smoke test before a full run:
+
+```bash
+python train_distilbert.py --target mit_risk_domain --max-train-samples 32 --max-val-samples 16 --max-test-samples 16 --num-epochs 1
+```
+
+The script uses `distilbert-base-uncased`, runs on GPU when available, saves the fine-tuned model/tokenizer, label mapping, metrics JSON, classification report CSV, test predictions CSV, and confusion matrix PNG under `model_outputs/distilbert_<target>/`.
+
 ## Customization Notes
 You can safely modify:
 - chart logic in [src/visualizations.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/visualizations.py)
