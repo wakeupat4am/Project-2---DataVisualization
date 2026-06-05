@@ -8,6 +8,20 @@ from shiny import App, reactive, render, ui
 from shiny.render import DataGrid
 from shinywidgets import output_widget, render_plotly
 
+from src.nlp_dashboard import (
+    CLUSTER_OUTPUT_DIR,
+    cluster_choice_map,
+    cluster_examples_table,
+    cluster_metadata_figure,
+    cluster_metric_summary,
+    cluster_scatter_figure,
+    cluster_size_figure,
+    cluster_summary_table,
+    cluster_timeline_figure,
+    filter_cluster_records,
+    load_cluster_outputs,
+    summarize_visible_clusters,
+)
 from src.preprocess import PreparedData, build_filtered_context, prepare_data
 from src.visualizations import (
     bump_chart_figure,
@@ -196,10 +210,12 @@ def network_table(context: dict[str, pd.DataFrame]) -> pd.DataFrame:
 
 
 prepared = prepare_data("data")
+cluster_outputs = load_cluster_outputs(CLUSTER_OUTPUT_DIR)
 year_min = prepared.metadata.get("incident_year_min") or 2010
 year_max = prepared.metadata.get("incident_year_max") or 2026
 risk_choices = prepared.metadata.get("risk_categories", [])
 domain_choices = prepared.metadata.get("source_domains", [])
+cluster_choices = cluster_choice_map(cluster_outputs)
 
 
 app_ui = ui.page_sidebar(
@@ -410,6 +426,70 @@ app_ui = ui.page_sidebar(
                     class_="soft-card network-card",
                 ),
             ),
+            ui.nav_panel(
+                "NLP Theme Discovery",
+                ui.layout_columns(
+                    ui.value_box("Clustered records", ui.output_text("nlp_kpi_records"), theme="bg-gradient-blue-purple"),
+                    ui.value_box("Unique incidents", ui.output_text("nlp_kpi_incidents"), theme="bg-gradient-indigo-purple"),
+                    ui.value_box("Visible clusters", ui.output_text("nlp_kpi_clusters"), theme="bg-gradient-green-teal"),
+                    ui.value_box("Largest theme", ui.output_text("nlp_kpi_largest"), theme="bg-gradient-orange-red"),
+                    col_widths=[3, 3, 3, 3],
+                ),
+                ui.card(
+                    ui.card_header("Theme controls"),
+                    ui.output_ui("nlp_cluster_selector_ui"),
+                    ui.p(
+                        "This view uses unsupervised NLP clusters from processed report or incident text.",
+                        class_="chart-note",
+                    ),
+                    class_="soft-card nlp-controls-card",
+                ),
+                ui.layout_columns(
+                    ui.card(
+                        ui.card_header("2D text theme map"),
+                        output_widget("nlp_cluster_scatter"),
+                        ui.p("Each point is a clustered report or incident text record.", class_="chart-note"),
+                        class_="soft-card nlp-scatter-card",
+                    ),
+                    ui.card(
+                        ui.card_header("Theme size"),
+                        output_widget("nlp_cluster_sizes"),
+                        ui.p("Cluster size shows how much of the filtered evidence layer belongs to each discovered theme.", class_="chart-note"),
+                        class_="soft-card",
+                    ),
+                    col_widths=[8, 4],
+                ),
+                ui.layout_columns(
+                    ui.card(
+                        ui.card_header("Theme frequency over time"),
+                        output_widget("nlp_cluster_timeline"),
+                        ui.p("Use this to compare discovered themes with the incident and report trends.", class_="chart-note"),
+                        class_="soft-card",
+                    ),
+                    ui.card(
+                        ui.card_header("Metadata profile"),
+                        output_widget("nlp_cluster_metadata"),
+                        ui.p("This profile connects discovered themes back to risk labels, sectors, failures, and sources when available.", class_="chart-note"),
+                        class_="soft-card",
+                    ),
+                    col_widths=[6, 6],
+                ),
+                ui.layout_columns(
+                    ui.card(
+                        ui.card_header("Cluster summary"),
+                        ui.output_data_frame("nlp_cluster_summary_table"),
+                        ui.p("Top keywords and examples make each discovered theme interpretable.", class_="chart-note"),
+                        class_="soft-card",
+                    ),
+                    ui.card(
+                        ui.card_header("Example records"),
+                        ui.output_data_frame("nlp_cluster_examples_table"),
+                        ui.p("Use examples to validate whether each cluster has a coherent incident theme.", class_="chart-note"),
+                        class_="soft-card",
+                    ),
+                    col_widths=[5, 7],
+                ),
+            ),
             id="main_tabs",
         ),
         ui.accordion(
@@ -466,6 +546,32 @@ def server(input, output, session):
     @reactive.calc
     def network_data():
         return network_table(filtered_context())
+
+    @reactive.calc
+    def selected_nlp_cluster():
+        try:
+            return input.nlp_cluster_filter()
+        except Exception:
+            return "__all__"
+
+    @reactive.calc
+    def nlp_records():
+        return filter_cluster_records(
+            cluster_outputs.records,
+            tuple(input.year_range()),
+            list(input.risk_filter()),
+            list(input.domain_filter()),
+            input.keyword(),
+            selected_nlp_cluster(),
+        )
+
+    @reactive.calc
+    def nlp_summary():
+        return summarize_visible_clusters(cluster_outputs.summary, nlp_records())
+
+    @reactive.calc
+    def nlp_metrics():
+        return cluster_metric_summary(nlp_records(), cluster_outputs.summary)
 
     @output
     @render.text
@@ -684,6 +790,81 @@ def server(input, output, session):
     @render_plotly
     def network_graph():
         return network_figure(network_data(), max_incidents=max(10, int(input.top_n())))
+
+    @output
+    @render.text
+    def nlp_kpi_records():
+        return f"{nlp_metrics()['records']:,}"
+
+    @output
+    @render.text
+    def nlp_kpi_incidents():
+        return f"{nlp_metrics()['incidents']:,}"
+
+    @output
+    @render.text
+    def nlp_kpi_clusters():
+        return f"{nlp_metrics()['clusters']:,}"
+
+    @output
+    @render.text
+    def nlp_kpi_largest():
+        return str(nlp_metrics()["largest_cluster"])
+
+    @output
+    @render.ui
+    def nlp_cluster_selector_ui():
+        if cluster_outputs.records.empty:
+            command = (
+                "python cluster_incidents.py --data-path processed_data/report_level_processed.csv "
+                "--output-dir cluster_outputs/sbert_report_clusters"
+            )
+            items = cluster_outputs.notes or ["Cluster outputs are unavailable."]
+            return ui.div(
+                ui.p("No NLP cluster output has been loaded yet.", class_="muted-text"),
+                ui.tags.ul(*[ui.tags.li(item) for item in items[:4]]),
+                ui.p("Run this command, then restart the dashboard:", class_="muted-text"),
+                ui.tags.code(command),
+                class_="note-card note-card-inline",
+            )
+        return ui.input_select(
+            "nlp_cluster_filter",
+            "Theme cluster",
+            choices=cluster_choices,
+            selected="__all__",
+        )
+
+    @output
+    @render_plotly
+    def nlp_cluster_scatter():
+        return cluster_scatter_figure(nlp_records())
+
+    @output
+    @render_plotly
+    def nlp_cluster_sizes():
+        return cluster_size_figure(cluster_outputs.summary, nlp_records())
+
+    @output
+    @render_plotly
+    def nlp_cluster_timeline():
+        return cluster_timeline_figure(nlp_records())
+
+    @output
+    @render_plotly
+    def nlp_cluster_metadata():
+        return cluster_metadata_figure(nlp_records())
+
+    @output
+    @render.data_frame
+    def nlp_cluster_summary_table():
+        frame = cluster_summary_table(cluster_outputs.summary, nlp_records())
+        return DataGrid(frame, summary="NLP cluster summary")
+
+    @output
+    @render.data_frame
+    def nlp_cluster_examples_table():
+        frame = cluster_examples_table(nlp_records())
+        return DataGrid(frame, summary="Example clustered records")
 
 
 app = App(app_ui, server, static_assets=Path(__file__).parent / "assets")

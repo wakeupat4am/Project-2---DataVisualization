@@ -1,0 +1,29 @@
+{
+  "data_path": "processed_data/report_level_processed.csv",
+  "output_dir": "cluster_outputs/sbert_report_clusters",
+  "text_column": "input_text",
+  "id_column": "incident_id",
+  "embedding_backend": "tfidf-svd",
+  "sentence_model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "batch_size": 32,
+  "max_records": null,
+  "min_text_chars": 80,
+  "reduction_method": "pca",
+  "cluster_method": "kmeans",
+  "n_clusters": 12,
+  "hdbscan_min_cluster_size": 20,
+  "hdbscan_min_samples": null,
+  "random_state": 42,
+  "top_keywords": 12,
+  "top_examples": 5,
+  "keyword_max_features": 10000,
+  "metadata_columns": {
+    "year": "incident_year",
+    "country": null,
+    "sector": "csetv0_infrastructure_sectors",
+    "risk_category": "mit_risk_domain",
+    "failure_type": "gmf_known_ai_technical_failure"
+  },
+  "reduction_used": "pca",
+  "cluster_method_used": "kmeans"
+}

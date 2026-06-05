@@ -1,0 +1,468 @@
+metadata_type,metadata_column,cluster_label,value,count,share_within_cluster
+year,incident_year,0,2020,2,0.2222222222222222
+year,incident_year,0,2022,1,0.1111111111111111
+year,incident_year,0,2016,1,0.1111111111111111
+year,incident_year,0,2011,1,0.1111111111111111
+year,incident_year,0,1996,1,0.1111111111111111
+year,incident_year,0,2017,1,0.1111111111111111
+year,incident_year,0,2019,1,0.1111111111111111
+year,incident_year,0,2021,1,0.1111111111111111
+year,incident_year,1,2024,322,0.18421052631578946
+year,incident_year,1,2025,277,0.15846681922196795
+year,incident_year,1,2017,200,0.11441647597254005
+year,incident_year,1,2023,185,0.10583524027459955
+year,incident_year,1,2016,157,0.08981693363844394
+year,incident_year,1,2022,119,0.06807780320366133
+year,incident_year,1,2015,101,0.057780320366132724
+year,incident_year,1,2020,64,0.036613272311212815
+year,incident_year,1,2026,64,0.036613272311212815
+year,incident_year,1,2018,63,0.036041189931350116
+year,incident_year,1,2021,59,0.033752860411899316
+year,incident_year,1,2013,30,0.017162471395881007
+year,incident_year,1,2011,30,0.017162471395881007
+year,incident_year,1,1983,27,0.015446224256292907
+year,incident_year,1,2008,24,0.013729977116704805
+year,incident_year,1,2019,15,0.008581235697940504
+year,incident_year,1,2014,7,0.004004576659038902
+year,incident_year,1,2006,3,0.0017162471395881006
+year,incident_year,1,2012,1,0.0005720823798627002
+year,incident_year,2,2016,42,0.32558139534883723
+year,incident_year,2,2022,36,0.27906976744186046
+year,incident_year,2,2021,27,0.20930232558139536
+year,incident_year,2,2025,13,0.10077519379844961
+year,incident_year,2,2020,5,0.03875968992248062
+year,incident_year,2,2023,5,0.03875968992248062
+year,incident_year,2,2017,1,0.007751937984496124
+year,incident_year,3,2025,348,0.5132743362831859
+year,incident_year,3,2024,158,0.23303834808259588
+year,incident_year,3,2023,57,0.084070796460177
+year,incident_year,3,2021,41,0.06047197640117994
+year,incident_year,3,2020,31,0.045722713864306784
+year,incident_year,3,2026,20,0.029498525073746312
+year,incident_year,3,2022,18,0.02654867256637168
+year,incident_year,3,2017,3,0.004424778761061947
+year,incident_year,3,2019,2,0.0029498525073746312
+year,incident_year,4,2016,56,0.3236994219653179
+year,incident_year,4,2018,53,0.3063583815028902
+year,incident_year,4,2019,20,0.11560693641618497
+year,incident_year,4,2021,20,0.11560693641618497
+year,incident_year,4,2022,13,0.07514450867052024
+year,incident_year,4,2020,4,0.023121387283236993
+year,incident_year,4,2023,3,0.017341040462427744
+year,incident_year,4,2024,3,0.017341040462427744
+year,incident_year,4,2017,1,0.005780346820809248
+year,incident_year,5,2023,132,0.3826086956521739
+year,incident_year,5,2025,105,0.30434782608695654
+year,incident_year,5,2022,53,0.1536231884057971
+year,incident_year,5,2024,36,0.10434782608695652
+year,incident_year,5,2026,9,0.02608695652173913
+year,incident_year,5,2021,5,0.014492753623188406
+year,incident_year,5,2020,2,0.005797101449275362
+year,incident_year,5,2019,2,0.005797101449275362
+year,incident_year,5,2018,1,0.002898550724637681
+year,incident_year,6,2016,124,0.13656387665198239
+year,incident_year,6,2015,108,0.11894273127753303
+year,incident_year,6,2017,86,0.0947136563876652
+year,incident_year,6,2020,71,0.07819383259911894
+year,incident_year,6,2014,67,0.07378854625550661
+year,incident_year,6,2021,57,0.06277533039647577
+year,incident_year,6,2024,55,0.0605726872246696
+year,incident_year,6,2018,51,0.05616740088105727
+year,incident_year,6,2022,45,0.04955947136563876
+year,incident_year,6,2023,41,0.04515418502202643
+year,incident_year,6,2012,39,0.042951541850220265
+year,incident_year,6,2025,38,0.04185022026431718
+year,incident_year,6,2019,37,0.040748898678414094
+year,incident_year,6,2010,30,0.03303964757709251
+year,incident_year,6,2013,19,0.02092511013215859
+year,incident_year,6,2003,12,0.013215859030837005
+year,incident_year,6,2026,6,0.006607929515418502
+year,incident_year,6,2008,5,0.005506607929515419
+year,incident_year,6,1998,4,0.004405286343612335
+year,incident_year,6,2007,4,0.004405286343612335
+year,incident_year,6,1999,3,0.003303964757709251
+year,incident_year,6,2009,2,0.0022026431718061676
+year,incident_year,6,1992,2,0.0022026431718061676
+year,incident_year,6,2011,1,0.0011013215859030838
+year,incident_year,6,1996,1,0.0011013215859030838
+year,incident_year,7,2023,187,0.41280353200883
+year,incident_year,7,2024,104,0.22958057395143489
+year,incident_year,7,2025,73,0.16114790286975716
+year,incident_year,7,2020,33,0.0728476821192053
+year,incident_year,7,2022,29,0.0640176600441501
+year,incident_year,7,2021,11,0.024282560706401765
+year,incident_year,7,2026,9,0.019867549668874173
+year,incident_year,7,2019,3,0.006622516556291391
+year,incident_year,7,2018,2,0.004415011037527594
+year,incident_year,7,2017,2,0.004415011037527594
+year,incident_year,8,2025,89,0.5894039735099338
+year,incident_year,8,2023,46,0.304635761589404
+year,incident_year,8,2024,8,0.052980132450331126
+year,incident_year,8,2026,7,0.046357615894039736
+year,incident_year,8,2019,1,0.006622516556291391
+year,incident_year,9,2016,33,0.16176470588235295
+year,incident_year,9,2022,30,0.14705882352941177
+year,incident_year,9,2018,27,0.1323529411764706
+year,incident_year,9,2017,23,0.11274509803921569
+year,incident_year,9,2024,17,0.08333333333333333
+year,incident_year,9,2021,15,0.07352941176470588
+year,incident_year,9,2023,15,0.07352941176470588
+year,incident_year,9,2025,14,0.06862745098039216
+year,incident_year,9,2015,12,0.058823529411764705
+year,incident_year,9,2014,9,0.04411764705882353
+year,incident_year,9,2026,5,0.024509803921568627
+year,incident_year,9,2020,4,0.0196078431372549
+year,incident_year,10,2025,60,0.2033898305084746
+year,incident_year,10,2022,41,0.13898305084745763
+year,incident_year,10,2018,33,0.11186440677966102
+year,incident_year,10,2017,29,0.09830508474576272
+year,incident_year,10,2020,26,0.08813559322033898
+year,incident_year,10,2019,25,0.0847457627118644
+year,incident_year,10,2024,23,0.07796610169491526
+year,incident_year,10,2023,22,0.07457627118644068
+year,incident_year,10,2016,14,0.04745762711864407
+year,incident_year,10,2021,13,0.04406779661016949
+year,incident_year,10,2007,3,0.010169491525423728
+year,incident_year,10,2013,3,0.010169491525423728
+year,incident_year,10,2015,2,0.006779661016949152
+year,incident_year,10,2026,1,0.003389830508474576
+year,incident_year,11,2024,233,0.29197994987468673
+year,incident_year,11,2023,143,0.17919799498746866
+year,incident_year,11,2025,143,0.17919799498746866
+year,incident_year,11,2022,61,0.07644110275689223
+year,incident_year,11,2020,50,0.06265664160401002
+year,incident_year,11,2017,38,0.047619047619047616
+year,incident_year,11,2026,29,0.03634085213032581
+year,incident_year,11,2019,28,0.03508771929824561
+year,incident_year,11,2021,28,0.03508771929824561
+year,incident_year,11,2015,19,0.023809523809523808
+year,incident_year,11,2018,17,0.021303258145363407
+year,incident_year,11,2014,6,0.007518796992481203
+year,incident_year,11,2016,3,0.0037593984962406013
+sector,csetv0_infrastructure_sectors,0,Healthcare and public health,1,1.0
+sector,csetv0_infrastructure_sectors,1,Transportation,71,0.5338345864661654
+sector,csetv0_infrastructure_sectors,1,Information technology,34,0.2556390977443609
+sector,csetv0_infrastructure_sectors,1,Nuclear,27,0.20300751879699247
+sector,csetv0_infrastructure_sectors,1,Communications,1,0.007518796992481203
+sector,csetv0_infrastructure_sectors,2,Transportation,1,1.0
+sector,csetv0_infrastructure_sectors,4,Transportation,21,1.0
+sector,csetv0_infrastructure_sectors,6,Government facilities,36,0.3
+sector,csetv0_infrastructure_sectors,6,Financial services,30,0.25
+sector,csetv0_infrastructure_sectors,6,Critical manufacturing,27,0.225
+sector,csetv0_infrastructure_sectors,6,Healthcare and public health,16,0.13333333333333333
+sector,csetv0_infrastructure_sectors,6,Food and agriculture,9,0.075
+sector,csetv0_infrastructure_sectors,6,Transportation,1,0.008333333333333333
+sector,csetv0_infrastructure_sectors,6,Emergency services,1,0.008333333333333333
+sector,csetv0_infrastructure_sectors,9,Transportation,73,1.0
+sector,csetv0_infrastructure_sectors,11,Communications,1,1.0
+risk_category,mit_risk_domain,0,"7. AI system safety, failures, and limitations",7,0.7777777777777778
+risk_category,mit_risk_domain,0,1. Discrimination and Toxicity,1,0.1111111111111111
+risk_category,mit_risk_domain,0,6. Socioeconomic & Environmental Harms,1,0.1111111111111111
+risk_category,mit_risk_domain,1,1. Discrimination and Toxicity,467,0.28862793572311496
+risk_category,mit_risk_domain,1,"7. AI system safety, failures, and limitations",347,0.21446229913473425
+risk_category,mit_risk_domain,1,3. Misinformation,270,0.1668726823238566
+risk_category,mit_risk_domain,1,2. Privacy & Security,210,0.12978986402966625
+risk_category,mit_risk_domain,1,4. Malicious Actors & Misuse,182,0.11248454882571075
+risk_category,mit_risk_domain,1,5. Human-Computer Interaction,95,0.05871446229913473
+risk_category,mit_risk_domain,1,6. Socioeconomic & Environmental Harms,47,0.02904820766378245
+risk_category,mit_risk_domain,2,"7. AI system safety, failures, and limitations",125,0.9689922480620154
+risk_category,mit_risk_domain,2,3. Misinformation,3,0.023255813953488372
+risk_category,mit_risk_domain,2,5. Human-Computer Interaction,1,0.007751937984496124
+risk_category,mit_risk_domain,3,4. Malicious Actors & Misuse,558,0.9670710571923743
+risk_category,mit_risk_domain,3,2. Privacy & Security,11,0.019064124783362217
+risk_category,mit_risk_domain,3,1. Discrimination and Toxicity,4,0.006932409012131715
+risk_category,mit_risk_domain,3,"7. AI system safety, failures, and limitations",4,0.006932409012131715
+risk_category,mit_risk_domain,4,"7. AI system safety, failures, and limitations",131,0.7572254335260116
+risk_category,mit_risk_domain,4,5. Human-Computer Interaction,39,0.2254335260115607
+risk_category,mit_risk_domain,4,3. Misinformation,3,0.017341040462427744
+risk_category,mit_risk_domain,5,3. Misinformation,140,0.4375
+risk_category,mit_risk_domain,5,"7. AI system safety, failures, and limitations",51,0.159375
+risk_category,mit_risk_domain,5,4. Malicious Actors & Misuse,43,0.134375
+risk_category,mit_risk_domain,5,5. Human-Computer Interaction,40,0.125
+risk_category,mit_risk_domain,5,2. Privacy & Security,26,0.08125
+risk_category,mit_risk_domain,5,1. Discrimination and Toxicity,15,0.046875
+risk_category,mit_risk_domain,5,6. Socioeconomic & Environmental Harms,5,0.015625
+risk_category,mit_risk_domain,6,"7. AI system safety, failures, and limitations",437,0.49434389140271495
+risk_category,mit_risk_domain,6,1. Discrimination and Toxicity,301,0.3404977375565611
+risk_category,mit_risk_domain,6,4. Malicious Actors & Misuse,64,0.07239819004524888
+risk_category,mit_risk_domain,6,2. Privacy & Security,52,0.058823529411764705
+risk_category,mit_risk_domain,6,6. Socioeconomic & Environmental Harms,25,0.02828054298642534
+risk_category,mit_risk_domain,6,5. Human-Computer Interaction,5,0.005656108597285068
+risk_category,mit_risk_domain,7,4. Malicious Actors & Misuse,353,0.8609756097560975
+risk_category,mit_risk_domain,7,3. Misinformation,44,0.1073170731707317
+risk_category,mit_risk_domain,7,"7. AI system safety, failures, and limitations",6,0.014634146341463415
+risk_category,mit_risk_domain,7,5. Human-Computer Interaction,3,0.007317073170731708
+risk_category,mit_risk_domain,7,2. Privacy & Security,3,0.007317073170731708
+risk_category,mit_risk_domain,7,1. Discrimination and Toxicity,1,0.0024390243902439024
+risk_category,mit_risk_domain,8,"7. AI system safety, failures, and limitations",46,0.4
+risk_category,mit_risk_domain,8,1. Discrimination and Toxicity,39,0.3391304347826087
+risk_category,mit_risk_domain,8,3. Misinformation,27,0.23478260869565218
+risk_category,mit_risk_domain,8,4. Malicious Actors & Misuse,3,0.02608695652173913
+risk_category,mit_risk_domain,9,"7. AI system safety, failures, and limitations",176,0.9513513513513514
+risk_category,mit_risk_domain,9,5. Human-Computer Interaction,8,0.043243243243243246
+risk_category,mit_risk_domain,9,1. Discrimination and Toxicity,1,0.005405405405405406
+risk_category,mit_risk_domain,10,2. Privacy & Security,101,0.36462093862815886
+risk_category,mit_risk_domain,10,1. Discrimination and Toxicity,84,0.30324909747292417
+risk_category,mit_risk_domain,10,4. Malicious Actors & Misuse,45,0.1624548736462094
+risk_category,mit_risk_domain,10,"7. AI system safety, failures, and limitations",44,0.1588447653429603
+risk_category,mit_risk_domain,10,3. Misinformation,3,0.010830324909747292
+risk_category,mit_risk_domain,11,4. Malicious Actors & Misuse,415,0.573997233748271
+risk_category,mit_risk_domain,11,3. Misinformation,159,0.21991701244813278
+risk_category,mit_risk_domain,11,1. Discrimination and Toxicity,94,0.13001383125864455
+risk_category,mit_risk_domain,11,"7. AI system safety, failures, and limitations",49,0.0677731673582296
+risk_category,mit_risk_domain,11,2. Privacy & Security,4,0.005532503457814661
+risk_category,mit_risk_domain,11,5. Human-Computer Interaction,1,0.0013831258644536654
+risk_category,mit_risk_domain,11,6. Socioeconomic & Environmental Harms,1,0.0013831258644536654
+failure_type,gmf_known_ai_technical_failure,0,"Inadequate Output Filtering, Context Misidentification",1,0.3333333333333333
+failure_type,gmf_known_ai_technical_failure,0,"Limited Dataset, Inadequate Data Augmentation, Overfitting",1,0.3333333333333333
+failure_type,gmf_known_ai_technical_failure,0,Distributional Artifacts,1,0.3333333333333333
+failure_type,gmf_known_ai_technical_failure,1,Distributional Bias,118,0.16761363636363635
+failure_type,gmf_known_ai_technical_failure,1,Harmful Application,36,0.05113636363636364
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Context Misidentification",35,0.04971590909090909
+failure_type,gmf_known_ai_technical_failure,1,"Unsafe Exposure or Access, Misuse",34,0.048295454545454544
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Limited Dataset, Dataset Imbalance, Data or Labelling Noise",30,0.04261363636363636
+failure_type,gmf_known_ai_technical_failure,1,Generalization Failure,29,0.041193181818181816
+failure_type,gmf_known_ai_technical_failure,1,"Data or Labelling Noise, Limited Dataset, Black Swan Event",27,0.03835227272727273
+failure_type,gmf_known_ai_technical_failure,1,"Dataset Imbalance, Distributional Bias",25,0.03551136363636364
+failure_type,gmf_known_ai_technical_failure,1,Security Vulnerability,24,0.03409090909090909
+failure_type,gmf_known_ai_technical_failure,1,Underfitting,22,0.03125
+failure_type,gmf_known_ai_technical_failure,1,"Context Misidentification, Distributional Artifacts, Distributional Bias",22,0.03125
+failure_type,gmf_known_ai_technical_failure,1,Latency Issues,22,0.03125
+failure_type,gmf_known_ai_technical_failure,1,Hardware Failure,20,0.028409090909090908
+failure_type,gmf_known_ai_technical_failure,1,"Limited Dataset, Task Mismatch",19,0.026988636363636364
+failure_type,gmf_known_ai_technical_failure,1,"Misinformation Generation Hazard, Misuse, Inadequate Verification",17,0.024147727272727272
+failure_type,gmf_known_ai_technical_failure,1,"Generalization Failure, Lack of Safety Protocols",16,0.022727272727272728
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Distributional Artifacts, Context Misidentification",16,0.022727272727272728
+failure_type,gmf_known_ai_technical_failure,1,"Gaming Vulnerability, Software Bug",11,0.015625
+failure_type,gmf_known_ai_technical_failure,1,"Adversarial Data, Distributional Bias, Unauthorized Data, Inadequate Anonymization, Inappropriate Training Content, Unsafe Exposure or Access",11,0.015625
+failure_type,gmf_known_ai_technical_failure,1,Unsafe Exposure or Access,10,0.014204545454545454
+failure_type,gmf_known_ai_technical_failure,1,"Misinformation Generation Hazard, Unsafe Exposure or Access",10,0.014204545454545454
+failure_type,gmf_known_ai_technical_failure,1,Context Misidentification,9,0.01278409090909091
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Overpersonalization, Faulty or Inadequate Preprocessing",9,0.01278409090909091
+failure_type,gmf_known_ai_technical_failure,1,"Context Misidentification, Generalization Failure, Lack of Adversarial Robustness",8,0.011363636363636364
+failure_type,gmf_known_ai_technical_failure,1,"Misinformation Generation Hazard, Unsafe Exposure or Access, Unauthorized Data",8,0.011363636363636364
+failure_type,gmf_known_ai_technical_failure,1,"Underspecification, Distributional Bias, Inadequate Verification, Problematic Input",7,0.009943181818181818
+failure_type,gmf_known_ai_technical_failure,1,"Dataset Imbalance, Inadequate Data Sampling",7,0.009943181818181818
+failure_type,gmf_known_ai_technical_failure,1,"Lack of Transparency, Misinformation Generation Hazard, Unsafe Exposure or Access",7,0.009943181818181818
+failure_type,gmf_known_ai_technical_failure,1,"Miscoordination, Multiagent Goal Divergence",6,0.008522727272727272
+failure_type,gmf_known_ai_technical_failure,1,"Data or Labelling Noise, Inadequate Output Filtering",5,0.007102272727272727
+failure_type,gmf_known_ai_technical_failure,1,"Inadequate Verification, Misuse",5,0.007102272727272727
+failure_type,gmf_known_ai_technical_failure,1,"Misuse, Malicious Marketing",5,0.007102272727272727
+failure_type,gmf_known_ai_technical_failure,1,"Harmful Application, Security Vulnerability",4,0.005681818181818182
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Distributional Artifacts",3,0.004261363636363636
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Unsafe Exposure or Access",3,0.004261363636363636
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Unsafe Exposure or Access, Misinformation Generation Hazard, Inappropriate Training Content",3,0.004261363636363636
+failure_type,gmf_known_ai_technical_failure,1,Lack of Authenticity Assurance,3,0.004261363636363636
+failure_type,gmf_known_ai_technical_failure,1,"Lack of Transparency, Malicious Marketing",3,0.004261363636363636
+failure_type,gmf_known_ai_technical_failure,1,"Context Misidentification, Distributional Artifacts, Distributional Bias, Inadequate Verification, Misinformation Generation Hazard",3,0.004261363636363636
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Dataset Imbalance",3,0.004261363636363636
+failure_type,gmf_known_ai_technical_failure,1,"Tuning Issues, Lack of Adversarial Robustness, Adversarial Data",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Limited Dataset, Dataset Imbalance, Misuse, Problematic Input, Incomplete Data Attribute Capture, Generalization Failure",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,Tuning Issues,2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,Incomplete Data Attribute Capture,2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,Algorithmic Bias,2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Gaming Vulnerability",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Unsafe Exposure or Access, Harmful Application",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Misaligned Objective, Incomplete Data Attribute Capture, Lack of Transparency",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Inadequate Verification, Lack of Safety Protocols",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Malicious Marketing, Generalization Failure",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Algorithmic Bias, Malicious Marketing, Harmful Application",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Unauthorized Data, Misinformation Generation Hazard",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Misinformation Generation Hazard, Unsafe Exposure or Access, Harmful Application",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,Untested Deployment,2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Inadequate Verification, Task Mismatch",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,Robustness Failure,2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Context Misidentification, Distributional Artifacts, Gaming Vulnerability, Unsafe Exposure or Access, Prompt Injection",2,0.002840909090909091
+failure_type,gmf_known_ai_technical_failure,1,"Limited Dataset, Inadequate Data Augmentation, Overfitting",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Inappropriate Training Content, Distributional Bias",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Gaming Vulnerability, Misaligned Objective",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Lack of Transparency, Hardcoding, Context Misidentification",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Unsafe Exposure or Access, Misinformation Generation Hazard",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Context Misidentification, Generalization Failure",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Generalization Failure, Context Misidentification",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Harmful Application, Lack of Safety Protocols",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Lack of Transparency, Untested Deployment, Lack of Interruptability, Lack of Corrigibility",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Unsafe Exposure or Access, Unauthorized Data",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Unauthorized Data, Lack of Capability Control, Privacy Concerns, Lack of Transparency",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Lack of Transparency, Generalization Failure",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Distributional Bias, Limited Dataset",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Problematic Input, Inadequate Verification",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,1,"Unsafe Exposure or Access, Context Misidentification, Distributional Artifacts, Distributional Bias",1,0.0014204545454545455
+failure_type,gmf_known_ai_technical_failure,2,"Problematic Input, Task Mismatch",28,0.4827586206896552
+failure_type,gmf_known_ai_technical_failure,2,"Generalization Failure, Incomplete Data Attribute Capture",8,0.13793103448275862
+failure_type,gmf_known_ai_technical_failure,2,"Incomplete Data Attribute Capture, Context Misidentification, Generalization Failure",8,0.13793103448275862
+failure_type,gmf_known_ai_technical_failure,2,Generalization Failure,5,0.08620689655172414
+failure_type,gmf_known_ai_technical_failure,2,"Harmful Application, Lack of Transparency",3,0.05172413793103448
+failure_type,gmf_known_ai_technical_failure,2,"Malicious Marketing, Lack of Transparency",3,0.05172413793103448
+failure_type,gmf_known_ai_technical_failure,2,"Inadequate Data Augmentation, Context Misidentification",2,0.034482758620689655
+failure_type,gmf_known_ai_technical_failure,2,"Generalization Failure, Limited Dataset",1,0.017241379310344827
+failure_type,gmf_known_ai_technical_failure,3,"Misinformation Generation Hazard, Unsafe Exposure or Access",39,0.8478260869565217
+failure_type,gmf_known_ai_technical_failure,3,Misinformation Generation Hazard,6,0.13043478260869565
+failure_type,gmf_known_ai_technical_failure,3,"Unsafe Exposure or Access, Misinformation Generation Hazard",1,0.021739130434782608
+failure_type,gmf_known_ai_technical_failure,4,"Generalization Failure, Faulty or Inadequate Preprocessing, Misuse",29,0.2871287128712871
+failure_type,gmf_known_ai_technical_failure,4,Misuse,23,0.22772277227722773
+failure_type,gmf_known_ai_technical_failure,4,"Generalization Failure, Limited Dataset",20,0.19801980198019803
+failure_type,gmf_known_ai_technical_failure,4,"Context Misidentification, Generalization Failure",5,0.04950495049504951
+failure_type,gmf_known_ai_technical_failure,4,"Hardware Failure, Lack of Transparency, Generalization Failure",4,0.039603960396039604
+failure_type,gmf_known_ai_technical_failure,4,Generalization Failure,4,0.039603960396039604
+failure_type,gmf_known_ai_technical_failure,4,"Misuse, Generalization Failure, Lack of Safety Protocols",4,0.039603960396039604
+failure_type,gmf_known_ai_technical_failure,4,"Generalization Failure, Inadequate Provenance",4,0.039603960396039604
+failure_type,gmf_known_ai_technical_failure,4,"Malicious Marketing, Lack of Transparency",3,0.0297029702970297
+failure_type,gmf_known_ai_technical_failure,4,"Misuse, Generalization Failure",2,0.019801980198019802
+failure_type,gmf_known_ai_technical_failure,4,Latency Issues,1,0.009900990099009901
+failure_type,gmf_known_ai_technical_failure,4,"Inadequate Data Augmentation, Context Misidentification",1,0.009900990099009901
+failure_type,gmf_known_ai_technical_failure,4,"Human Error, Latency Issues",1,0.009900990099009901
+failure_type,gmf_known_ai_technical_failure,5,"Software Bug, Context Misidentification, Distributional Artifacts",5,0.35714285714285715
+failure_type,gmf_known_ai_technical_failure,5,Misinformation Generation Hazard,3,0.21428571428571427
+failure_type,gmf_known_ai_technical_failure,5,"Limited Dataset, Limited Receptive Field, Untested Deployment",2,0.14285714285714285
+failure_type,gmf_known_ai_technical_failure,5,"Limited Dataset, Dataset Imbalance, Generalization Failure, Domain Adaptation Deficit",2,0.14285714285714285
+failure_type,gmf_known_ai_technical_failure,5,"Problematic Input, Inadequate Verification",1,0.07142857142857142
+failure_type,gmf_known_ai_technical_failure,5,"Security Vulnerability, Unauthorized Data",1,0.07142857142857142
+failure_type,gmf_known_ai_technical_failure,6,"Incomplete Data Attribute Capture, Problematic Input",39,0.09375
+failure_type,gmf_known_ai_technical_failure,6,Generalization Failure,38,0.09134615384615384
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Capability Control, Unsafe Exposure or Access, Lack of Safety Protocols",27,0.06490384615384616
+failure_type,gmf_known_ai_technical_failure,6,"Inappropriate Training Content, Distributional Bias",25,0.06009615384615385
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Transparency, Distributional Bias",21,0.05048076923076923
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Capability Control, Lack of Corrigibility, Human Error, Problematic Input",20,0.04807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Limited Dataset, Lack of Transparency, Faulty Interface or Instructions, Inadequate Data Augmentation",18,0.04326923076923077
+failure_type,gmf_known_ai_technical_failure,6,Lack of Transparency,17,0.040865384615384616
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Distributional Bias, Incomplete Data Attribute Capture",15,0.036057692307692304
+failure_type,gmf_known_ai_technical_failure,6,Lack of Safety Protocols,12,0.028846153846153848
+failure_type,gmf_known_ai_technical_failure,6,Hardware Failure,11,0.026442307692307692
+failure_type,gmf_known_ai_technical_failure,6,Underspecification,9,0.021634615384615384
+failure_type,gmf_known_ai_technical_failure,6,"System Manipulation, Inadequate Provenance, Generalization Failure, Context Misidentification",9,0.021634615384615384
+failure_type,gmf_known_ai_technical_failure,6,"Distributional Bias, Limited Dataset, Dataset Imbalance, Misuse, Problematic Input, Incomplete Data Attribute Capture, Generalization Failure",7,0.016826923076923076
+failure_type,gmf_known_ai_technical_failure,6,"Input Sensitivity, Incomplete Data Attribute Capture, Underspecification",6,0.014423076923076924
+failure_type,gmf_known_ai_technical_failure,6,"Algorithmic Bias, Problematic Features, Harmful Application, Lack of Safety Protocols",6,0.014423076923076924
+failure_type,gmf_known_ai_technical_failure,6,"Harmful Application, Lack of Transparency",6,0.014423076923076924
+failure_type,gmf_known_ai_technical_failure,6,Task Mismatch,5,0.01201923076923077
+failure_type,gmf_known_ai_technical_failure,6,"Misconfigured Threshold, Lack of Transparency, Generalization Failure",5,0.01201923076923077
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Transparency, Generalization Failure",5,0.01201923076923077
+failure_type,gmf_known_ai_technical_failure,6,Concept Drift,5,0.01201923076923077
+failure_type,gmf_known_ai_technical_failure,6,"Algorithmic Bias, Lack of Transparency",5,0.01201923076923077
+failure_type,gmf_known_ai_technical_failure,6,Lack of Capability Control,5,0.01201923076923077
+failure_type,gmf_known_ai_technical_failure,6,"Misuse, Inadequate Verification",4,0.009615384615384616
+failure_type,gmf_known_ai_technical_failure,6,"Algorithmic Bias, Problematic Features",4,0.009615384615384616
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Algorithmic Bias, Lack of Transparency, Malicious Marketing",4,0.009615384615384616
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Lack of Transparency",4,0.009615384615384616
+failure_type,gmf_known_ai_technical_failure,6,Privacy Concerns,4,0.009615384615384616
+failure_type,gmf_known_ai_technical_failure,6,"Privacy Concerns, Unauthorized Data, Harmful Application",4,0.009615384615384616
+failure_type,gmf_known_ai_technical_failure,6,"Distributional Bias, Limited Dataset, Dataset Imbalance, Data or Labelling Noise",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Lack of Explainability, Lack of Transparency",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,Algorithmic Bias,3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Incomplete Data Attribute Capture, Context Misidentification, Limited Dataset",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Privacy Concerns, Lack of Transparency",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Data or Labelling Noise, Incomplete Data Attribute Capture",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Transparency, Untested Deployment",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Human Error",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Untested Deployment",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Harmful Application, Lack of Safety Protocols, Lack of Capability Control, Lack of Transparency",3,0.007211538461538462
+failure_type,gmf_known_ai_technical_failure,6,"Distributional Bias, Limited Dataset",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Software Bug, Lack of Transparency",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Transparency, Lack of Explainability, Faulty Interface or Instructions",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,Lack of Authenticity Assurance,2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Explainability, Incomplete Data Attribute Capture",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Context Misidentification",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Limited Dataset, Data or Labelling Noise, Generalization Failure, Lack of Transparency, Inappropriate Training Content",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Human Error, Outdated Ground Truth",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Misaligned Objective, Underfitting, Incomplete Data Attribute Capture, Algorithmic Bias, Lack of Transparency",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Algorithmic Bias, Distributional Bias",2,0.004807692307692308
+failure_type,gmf_known_ai_technical_failure,6,"Limited Dataset, Inadequate Data Augmentation, Overfitting",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Security Vulnerability, Lack of Capability Control, Context Misidentification",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,Distributional Bias,1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Covariate Shift, Inadequate Data Augmentation",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Dataset Imbalance, Inadequate Data Sampling",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Distributional Bias, Limited Dataset, Dataset Imbalance",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Transparency, Lack of Explainability",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Transparency, Faulty Interface or Instructions",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,Problematic Features,1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,Harmful Application,1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Task Mismatch, Malicious Marketing",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Human Error, Data or Labelling Noise, Limited Dataset, Overfitting",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Generalization Failure, Algorithmic Bias, Pose Estimation",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Distributional Bias, Gaming Vulnerability",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Transparency, Misconfigured Threshold",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Underspecification, Misconfigured Threshold, Inadequate Provenance, Lack of Transparency",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Limited Dataset, Dataset Imbalance, Generalization Failure",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,Scaling Limitations,1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Privacy Concerns, Lack of Transparency, Algorithmic Bias, Misaligned Objective",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Lack of Explainability, Generalization Failure",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,Human Error,1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Data or Labelling Noise, Lack of Transparency",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Inadequate Output Filtering, Inadequate Verification",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Algorithmic Bias, Lack of Explainability, Lack of Transparency",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Limited Dataset, Limited Receptive Field, Untested Deployment",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,6,"Malicious Marketing, Generalization Failure",1,0.002403846153846154
+failure_type,gmf_known_ai_technical_failure,7,"Misinformation Generation Hazard, Unsafe Exposure or Access",40,0.8695652173913043
+failure_type,gmf_known_ai_technical_failure,7,Unsafe Exposure or Access,3,0.06521739130434782
+failure_type,gmf_known_ai_technical_failure,7,Misinformation Generation Hazard,1,0.021739130434782608
+failure_type,gmf_known_ai_technical_failure,7,Generalization Failure,1,0.021739130434782608
+failure_type,gmf_known_ai_technical_failure,7,"Privacy Concerns, Unsafe Exposure or Access, Misinformation Generation Hazard",1,0.021739130434782608
+failure_type,gmf_known_ai_technical_failure,8,"Unsafe Exposure or Access, Context Misidentification",46,0.9787234042553191
+failure_type,gmf_known_ai_technical_failure,8,Misinformation Generation Hazard,1,0.02127659574468085
+failure_type,gmf_known_ai_technical_failure,9,Generalization Failure,27,0.35064935064935066
+failure_type,gmf_known_ai_technical_failure,9,Human Error,23,0.2987012987012987
+failure_type,gmf_known_ai_technical_failure,9,"Lack of Transparency, Lack of Explainability, Generalization Failure",7,0.09090909090909091
+failure_type,gmf_known_ai_technical_failure,9,"Lack of Transparency, Context Misidentification, Lack of Safety Protocols",5,0.06493506493506493
+failure_type,gmf_known_ai_technical_failure,9,"Robustness Failure, Covariate Shift",4,0.05194805194805195
+failure_type,gmf_known_ai_technical_failure,9,Latency Issues,4,0.05194805194805195
+failure_type,gmf_known_ai_technical_failure,9,"Generalization Failure, Lack of Safety Protocols",3,0.03896103896103896
+failure_type,gmf_known_ai_technical_failure,9,"Domain Adaptation Deficit, Untested Deployment, Limited Dataset",2,0.025974025974025976
+failure_type,gmf_known_ai_technical_failure,9,"Generalization Failure, Limited Dataset",1,0.012987012987012988
+failure_type,gmf_known_ai_technical_failure,9,"Distributional Bias, Limited Dataset, Dataset Imbalance, Data or Labelling Noise",1,0.012987012987012988
+failure_type,gmf_known_ai_technical_failure,10,"Privacy Concerns, Unsafe Exposure or Access, Lack of Transparency",10,0.15384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Privacy Concerns, Unauthorized Data",7,0.1076923076923077
+failure_type,gmf_known_ai_technical_failure,10,Generalization Failure,5,0.07692307692307693
+failure_type,gmf_known_ai_technical_failure,10,Unauthorized Data,5,0.07692307692307693
+failure_type,gmf_known_ai_technical_failure,10,"Dataset Imbalance, Generalization Failure",3,0.046153846153846156
+failure_type,gmf_known_ai_technical_failure,10,"Generalization Failure, Lack of Transparency",3,0.046153846153846156
+failure_type,gmf_known_ai_technical_failure,10,"Inadequate Verification, Task Mismatch",3,0.046153846153846156
+failure_type,gmf_known_ai_technical_failure,10,"Unauthorized Data, Harmful Application",3,0.046153846153846156
+failure_type,gmf_known_ai_technical_failure,10,"Limited Dataset, Task Mismatch",2,0.03076923076923077
+failure_type,gmf_known_ai_technical_failure,10,"Generalization Failure, Limited Dataset, Lack of Transparency, Faulty Interface or Instructions, Inadequate Data Augmentation",2,0.03076923076923077
+failure_type,gmf_known_ai_technical_failure,10,"Harmful Application, Unsafe Exposure or Access",2,0.03076923076923077
+failure_type,gmf_known_ai_technical_failure,10,"Unauthorized Data, Lack of Capability Control, Privacy Concerns, Lack of Transparency",2,0.03076923076923077
+failure_type,gmf_known_ai_technical_failure,10,"Distributional Bias, Generalization Failure",2,0.03076923076923077
+failure_type,gmf_known_ai_technical_failure,10,Privacy Concerns,2,0.03076923076923077
+failure_type,gmf_known_ai_technical_failure,10,Underfitting,1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,Algorithmic Bias,1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Security Vulnerability, Lack of Safety Protocols, Inadequate Anonymization, Harmful Application, Misuse, Inadequate Verification, Data or Labelling Noise, Domain Adaptation Deficit",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Lack of Safety Protocols, Unsafe Exposure or Access",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Generalization Failure, Distributional Bias, Lack of Safety Protocols",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Algorithmic Bias, Generalization Failure",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Gaming Vulnerability, Adversarial Data",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Generalization Failure, Context Misidentification",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Adversarial Data, Gaming Vulnerability",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,Harmful Application,1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Privacy Concerns, Lack of Transparency, Algorithmic Bias, Misaligned Objective",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Data or Labelling Noise, Incomplete Data Attribute Capture",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Privacy Concerns, Data or Labelling Noise, Unauthorized Data",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,10,"Generalization Failure, Lack of Explainability, Lack of Transparency",1,0.015384615384615385
+failure_type,gmf_known_ai_technical_failure,11,"Misinformation Generation Hazard, Unsafe Exposure or Access",44,0.3308270676691729
+failure_type,gmf_known_ai_technical_failure,11,Generalization Failure,14,0.10526315789473684
+failure_type,gmf_known_ai_technical_failure,11,"Tuning Issues, Lack of Adversarial Robustness, Adversarial Data",12,0.09022556390977443
+failure_type,gmf_known_ai_technical_failure,11,Context Misidentification,7,0.05263157894736842
+failure_type,gmf_known_ai_technical_failure,11,"Overfitting, Limited Dataset, Inadequate Data Augmentation",6,0.045112781954887216
+failure_type,gmf_known_ai_technical_failure,11,Misinformation Generation Hazard,5,0.03759398496240601
+failure_type,gmf_known_ai_technical_failure,11,"Inadequate Verification, Misinformation Generation Hazard, Unsafe Exposure or Access",4,0.03007518796992481
+failure_type,gmf_known_ai_technical_failure,11,Lack of Transparency,4,0.03007518796992481
+failure_type,gmf_known_ai_technical_failure,11,"Context Misidentification, Generalization Failure",4,0.03007518796992481
+failure_type,gmf_known_ai_technical_failure,11,Gaming Vulnerability,3,0.022556390977443608
+failure_type,gmf_known_ai_technical_failure,11,"Misinformation Generation Hazard, Harmful Application, Privacy Concerns, Unauthorized Data",3,0.022556390977443608
+failure_type,gmf_known_ai_technical_failure,11,"Unsafe Exposure or Access, Lack of Safety Protocols",3,0.022556390977443608
+failure_type,gmf_known_ai_technical_failure,11,"Overfitting, Inadequate Data Augmentation, Limited Dataset",3,0.022556390977443608
+failure_type,gmf_known_ai_technical_failure,11,"Unsafe Exposure or Access, Task Mismatch, Incomplete Data Attribute Capture",3,0.022556390977443608
+failure_type,gmf_known_ai_technical_failure,11,"Unsafe Exposure or Access, Misinformation Generation Hazard",2,0.015037593984962405
+failure_type,gmf_known_ai_technical_failure,11,"Unauthorized Data, Misinformation Generation Hazard",2,0.015037593984962405
+failure_type,gmf_known_ai_technical_failure,11,"Algorithmic Bias, Lack of Explainability, Lack of Transparency",2,0.015037593984962405
+failure_type,gmf_known_ai_technical_failure,11,"Inadequate Output Filtering, Unsafe Exposure or Access",2,0.015037593984962405
+failure_type,gmf_known_ai_technical_failure,11,"Dataset Imbalance, Distributional Bias",1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,Inadequate Verification,1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,"Generalization Failure, Distributional Bias",1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,"Misaligned Objective, Harmful Application",1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,"Generalization Failure, Context Misidentification",1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,"Faulty Interface or Instructions, Lack of Transparency",1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,"Misinformation Generation Hazard, Lack of Safety Protocols, Harmful Application, Inadequate Verification",1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,"Overfitting, Limited Dataset",1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,Algorithmic Bias,1,0.007518796992481203
+failure_type,gmf_known_ai_technical_failure,11,Unsafe Exposure or Access,1,0.007518796992481203
