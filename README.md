@@ -14,6 +14,7 @@ The dashboard answers four connected questions:
 2. **Which AI risks are becoming more visible?**
 3. **Which incidents and source domains dominate public attention?**
 4. **Where do AI incidents appear, and how are incidents connected to risks and sources?**
+5. **How additional datasets might add insight**
 
 It explicitly separates:
 - **Incident count**: how many AI incidents are recorded
