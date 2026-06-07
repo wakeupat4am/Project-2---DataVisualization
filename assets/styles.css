@@ -1,11 +1,16 @@
 :root {
   --bg: #e8efef;
-  --panel: rgba(255, 255, 255, 0.86);
-  --card: rgba(255, 255, 255, 0.97);
+  --panel: rgba(247, 252, 252, 0.9);
+  --card: rgba(255, 255, 255, 0.98);
+  --card-mint: linear-gradient(180deg, rgba(235, 249, 248, 0.98), rgba(224, 244, 242, 0.95));
+  --card-lavender: linear-gradient(180deg, rgba(245, 240, 252, 0.98), rgba(236, 230, 248, 0.96));
+  --card-ice: linear-gradient(180deg, rgba(249, 252, 252, 0.99), rgba(240, 247, 247, 0.97));
+  --card-dark: linear-gradient(180deg, #202936, #141b25);
   --ink: #161a22;
   --muted: #687587;
   --teal: #bfe8e4;
   --teal-strong: #79c7c5;
+  --teal-deep: #2f6667;
   --lavender: #e7dbfb;
   --ink-soft: #283241;
   --outline: rgba(205, 217, 222, 0.98);
@@ -26,7 +31,47 @@ body {
     radial-gradient(circle at top right, rgba(231, 219, 251, 0.4), transparent 24%),
     linear-gradient(180deg, #f3f7f8 0%, var(--bg) 100%);
   color: var(--ink);
-  font-family: "Inter", "Segoe UI", sans-serif;
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.navbar,
+.sidebar-layout-title,
+.bslib-page-title,
+.app-topbar-title {
+  background:
+    linear-gradient(90deg, rgba(79, 104, 103, 0.92) 0%, rgba(119, 140, 142, 0.9) 52%, rgba(204, 228, 225, 0.92) 100%) !important;
+  border-bottom: 1px solid rgba(206, 231, 228, 0.85);
+  box-shadow: 0 10px 28px rgba(34, 46, 55, 0.12);
+}
+
+.navbar .navbar-brand,
+.sidebar-layout-title,
+.bslib-page-title,
+.app-topbar-title {
+  color: #f5fbfb !important;
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 1.95rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+  text-shadow: 0 1px 0 rgba(17, 28, 38, 0.14);
+}
+
+.sidebar-layout-title,
+.app-topbar-title {
+  display: flex;
+  align-items: center;
+  min-height: 74px;
+  padding: 0 1.2rem;
+}
+
+.navbar::after,
+.sidebar-layout-title::after,
+.bslib-page-title::after,
+.app-topbar-title::after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(121, 199, 197, 0.9), rgba(231, 219, 251, 0.92), rgba(191, 232, 228, 0.92));
 }
 
 .app-shell {
@@ -34,7 +79,7 @@ body {
 }
 
 .app-sidebar {
-  background: var(--panel);
+  background: linear-gradient(180deg, rgba(241, 250, 249, 0.94), rgba(247, 252, 252, 0.88));
   backdrop-filter: blur(18px);
   border-right: 1px solid var(--outline);
   box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.75);
@@ -92,6 +137,7 @@ body {
 .sidebar-tip {
   margin-top: 1rem;
   padding: 1rem 1rem 0.2rem;
+  background: var(--card-lavender);
 }
 
 .hero-card {
@@ -99,6 +145,9 @@ body {
   padding: 1.55rem 1.65rem;
   position: relative;
   overflow: hidden;
+  background:
+    radial-gradient(circle at top right, rgba(231, 219, 251, 0.55), transparent 28%),
+    linear-gradient(180deg, rgba(239, 250, 249, 0.98), rgba(231, 245, 243, 0.97));
 }
 
 .hero-card::after {
@@ -219,8 +268,8 @@ body {
 
 .micro-card {
   min-width: 135px;
-  background: linear-gradient(180deg, #f7fbfb, #edf7f7);
-  border: 1px solid #d7ecea;
+  background: var(--card-mint);
+  border: 1px solid #d0e8e4;
   border-radius: 18px;
   padding: 0.8rem 0.95rem;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
@@ -233,7 +282,7 @@ body {
 }
 
 .micro-card-dark {
-  background: linear-gradient(180deg, #1b2330, #0f1724);
+  background: var(--card-dark);
   border-color: #1c2736;
   color: #f7fafc;
 }
@@ -252,6 +301,22 @@ body {
   color: rgba(255, 255, 255, 0.72);
 }
 
+.story-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--outline);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 0.48rem 0.82rem;
+}
+
+.story-chip-active {
+  background: linear-gradient(180deg, #daf3ef, #bee5df);
+  color: var(--teal-deep);
+  border-color: #c5e6e3;
+}
 .soft-card,
 .note-card {
   padding: 0.9rem 1rem 1rem;
@@ -260,6 +325,7 @@ body {
 
 .detail-card {
   padding: 1rem 1.1rem;
+  background: var(--card-ice);
 }
 
 .soft-card .card-header {
@@ -267,7 +333,7 @@ body {
   border-bottom: 0;
   font-weight: 720;
   font-size: 1.05rem;
-  padding: 0.3rem 0 0.22rem;
+  padding: 0.3rem 0 0.22rem 0.55rem;
 }
 
 .soft-card .card-body {
@@ -329,9 +395,31 @@ body {
 .bslib-value-box.bg-gradient-indigo-purple,
 .bslib-value-box.bg-gradient-green-teal,
 .bslib-value-box.bg-gradient-orange-red {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 249, 249, 0.96)) !important;
+  background: var(--card-ice) !important;
   color: var(--ink) !important;
+}
+
+.bslib-value-box:nth-child(1) {
+  background: var(--card-mint) !important;
+}
+
+.bslib-value-box:nth-child(2) {
+  background: var(--card-lavender) !important;
+}
+
+.bslib-value-box:nth-child(3) {
+  background: linear-gradient(180deg, rgba(244, 250, 252, 0.98), rgba(232, 241, 246, 0.97)) !important;
+}
+
+.bslib-value-box:nth-child(4) {
+  background: var(--card-dark) !important;
+}
+
+.bslib-value-box:nth-child(4) .value-box-title,
+.bslib-value-box:nth-child(4) .value-box-value,
+.bslib-value-box:nth-child(4) .value-box-showcase,
+.bslib-value-box:nth-child(4) .text-muted {
+  color: #f7fafc !important;
 }
 
 .bslib-value-box .value-box-title,
@@ -368,7 +456,7 @@ body {
   border: 1px solid var(--outline);
   border-radius: 999px !important;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.95);
   padding: 0.62rem 0.95rem;
   transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
@@ -379,8 +467,8 @@ body {
 }
 
 .nav-tabs .nav-link.active {
-  background: linear-gradient(180deg, #def3f0, #cceae7);
-  color: #19494a;
+  background: linear-gradient(180deg, #daf3ef, #bee5df);
+  color: var(--teal-deep);
   border-color: #c5e6e3;
 }
 
@@ -430,12 +518,50 @@ body {
   background: transparent;
 }
 
+.soft-card:nth-of-type(3n + 1),
+.note-card {
+  background: var(--card-ice);
+}
+
+.soft-card:nth-of-type(3n + 2) {
+  background: var(--card-mint);
+}
+
+.soft-card:nth-of-type(3n + 3) {
+  background: var(--card-lavender);
+}
+
+.import-card {
+  background: linear-gradient(180deg, rgba(236, 249, 247, 0.98), rgba(226, 243, 241, 0.96));
+}
+
+.import-summary-card {
+  background: linear-gradient(180deg, rgba(245, 240, 252, 0.98), rgba(233, 227, 247, 0.96));
+}
+
 .tab-content {
   padding-top: 0.1rem;
 }
 
 .soft-card .card-header {
   font-size: 1.12rem;
+}
+
+.import-submit-btn {
+  margin-top: 0.85rem;
+  margin-bottom: 0.15rem;
+  border-radius: 14px !important;
+  background: linear-gradient(180deg, #7ecdc8, #67bbb6) !important;
+  border: 1px solid #5db0aa !important;
+  color: #0f2f30 !important;
+  font-weight: 700 !important;
+  padding: 0.65rem 1rem !important;
+  box-shadow: 0 10px 22px rgba(83, 165, 160, 0.22);
+}
+
+.import-submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(83, 165, 160, 0.28);
 }
 
 .soft-card .chart-note {

@@ -10,17 +10,10 @@ from shinywidgets import output_widget, render_plotly
 
 from src.nlp_dashboard import (
     CLUSTER_OUTPUT_DIR,
-    cluster_choice_map,
-    cluster_examples_table,
-    cluster_metadata_figure,
-    cluster_metric_summary,
-    cluster_scatter_figure,
-    cluster_size_figure,
-    cluster_summary_table,
-    cluster_timeline_figure,
-    filter_cluster_records,
+    build_cluster_text_classifier,
+    classify_new_report,
     load_cluster_outputs,
-    summarize_visible_clusters,
+    prediction_bar_figure,
 )
 from src.preprocess import PreparedData, build_filtered_context, prepare_data
 from src.visualizations import (
@@ -224,11 +217,11 @@ def network_table(context: dict[str, pd.DataFrame]) -> pd.DataFrame:
 
 prepared = prepare_data("data")
 cluster_outputs = load_cluster_outputs(CLUSTER_OUTPUT_DIR)
+cluster_classifier = build_cluster_text_classifier(cluster_outputs)
 year_min = prepared.metadata.get("incident_year_min") or 2010
 year_max = prepared.metadata.get("incident_year_max") or 2026
 risk_choices = prepared.metadata.get("risk_categories", [])
 domain_choices = prepared.metadata.get("source_domains", [])
-cluster_choices = cluster_choice_map(cluster_outputs)
 
 
 app_ui = ui.page_sidebar(
@@ -494,64 +487,59 @@ app_ui = ui.page_sidebar(
                 ),
             ),
             ui.nav_panel(
-                "NLP Theme Discovery",
-                ui.layout_columns(
-                    ui.value_box("Clustered records", ui.output_text("nlp_kpi_records"), theme="bg-gradient-blue-purple"),
-                    ui.value_box("Unique incidents", ui.output_text("nlp_kpi_incidents"), theme="bg-gradient-indigo-purple"),
-                    ui.value_box("Visible clusters", ui.output_text("nlp_kpi_clusters"), theme="bg-gradient-green-teal"),
-                    ui.value_box("Largest theme", ui.output_text("nlp_kpi_largest"), theme="bg-gradient-orange-red"),
-                    col_widths=[3, 3, 3, 3],
-                ),
-                ui.card(
-                    ui.card_header("Theme controls"),
-                    ui.output_ui("nlp_cluster_selector_ui"),
-                    ui.p(
-                        "This view uses unsupervised NLP clusters from processed report or incident text.",
-                        class_="chart-note",
-                    ),
-                    class_="soft-card nlp-controls-card",
+                "6 · Import & Classify",
+                story_act_banner(
+                    "NLP Demo",
+                    "Paste a new report and classify it",
+                    "If a new article arrives today, what incident category and fault pattern does it most resemble?",
+                    "This uses the existing incident corpus as training data to predict the most likely incident category and related fault pattern, then surfaces similar historical cases as evidence.",
                 ),
                 ui.layout_columns(
                     ui.card(
-                        ui.card_header("2D text theme map"),
-                        output_widget("nlp_cluster_scatter"),
-                        ui.p("Each point is a clustered report or incident text record.", class_="chart-note"),
-                        class_="soft-card nlp-scatter-card",
+                        ui.card_header("Paste a new report"),
+                        ui.input_text("import_report_title", "Report title", placeholder="Enter a news headline or report title"),
+                        ui.input_text("import_report_domain", "Source domain (optional)", placeholder="e.g. nytimes.com"),
+                        ui.input_text_area(
+                            "import_report_body",
+                            "Report body / summary",
+                            placeholder="Paste the report text or a concise summary here",
+                            rows=12,
+                        ),
+                        ui.input_action_button("import_report_submit", "Submit for NLP classification", class_="import-submit-btn"),
+                        ui.p(
+                            "Tip: a title plus 1-3 paragraphs is usually enough for a stable theme match.",
+                            class_="chart-note",
+                        ),
+                        class_="soft-card import-card",
                     ),
                     ui.card(
-                        ui.card_header("Theme size"),
-                        output_widget("nlp_cluster_sizes"),
-                        ui.p("Cluster size shows how much of the filtered evidence layer belongs to each discovered theme.", class_="chart-note"),
-                        class_="soft-card",
+                        ui.card_header("Predicted incident type"),
+                        ui.output_ui("import_prediction_summary"),
+                        ui.p(
+                            "The result combines a trained text classifier with similar-case retrieval from the incident corpus.",
+                            class_="chart-note",
+                        ),
+                        class_="soft-card import-summary-card",
                     ),
-                    col_widths=[8, 4],
+                    col_widths=[7, 5],
                 ),
                 ui.layout_columns(
                     ui.card(
-                        ui.card_header("Theme frequency over time"),
-                        output_widget("nlp_cluster_timeline"),
-                        ui.p("Use this to compare discovered themes with the incident and report trends.", class_="chart-note"),
+                        ui.card_header("Top predicted incident categories"),
+                        output_widget("import_prediction_bar"),
+                        ui.p(
+                            "These probabilities come from a classifier trained on labeled incident text from the dataset.",
+                            class_="chart-note",
+                        ),
                         class_="soft-card",
                     ),
                     ui.card(
-                        ui.card_header("Metadata profile"),
-                        output_widget("nlp_cluster_metadata"),
-                        ui.p("This profile connects discovered themes back to risk labels, sectors, failures, and sources when available.", class_="chart-note"),
-                        class_="soft-card",
-                    ),
-                    col_widths=[6, 6],
-                ),
-                ui.layout_columns(
-                    ui.card(
-                        ui.card_header("Cluster summary"),
-                        ui.output_data_frame("nlp_cluster_summary_table"),
-                        ui.p("Top keywords and examples make each discovered theme interpretable.", class_="chart-note"),
-                        class_="soft-card",
-                    ),
-                    ui.card(
-                        ui.card_header("Example records"),
-                        ui.output_data_frame("nlp_cluster_examples_table"),
-                        ui.p("Use examples to validate whether each cluster has a coherent incident theme.", class_="chart-note"),
+                        ui.card_header("Closest example records"),
+                        ui.output_data_frame("import_prediction_examples"),
+                        ui.p(
+                            "Use these nearest examples to judge whether the predicted section is interpretable and credible.",
+                            class_="chart-note",
+                        ),
                         class_="soft-card",
                     ),
                     col_widths=[5, 7],
@@ -569,7 +557,7 @@ app_ui = ui.page_sidebar(
         ),
         class_="app-shell",
     ),
-    title="AI Incident Database Explorer",
+    title=ui.div("AI Incident Database Explorer", class_="app-topbar-title"),
     fillable=True,
     theme=shinyswatch.theme.flatly(),
 )
@@ -615,30 +603,15 @@ def server(input, output, session):
         return network_table(filtered_context())
 
     @reactive.calc
-    def selected_nlp_cluster():
-        try:
-            return input.nlp_cluster_filter()
-        except Exception:
-            return "__all__"
-
-    @reactive.calc
-    def nlp_records():
-        return filter_cluster_records(
-            cluster_outputs.records,
-            tuple(input.year_range()),
-            list(input.risk_filter()),
-            list(input.domain_filter()),
-            input.keyword(),
-            selected_nlp_cluster(),
+    @reactive.event(input.import_report_submit)
+    def imported_report_prediction():
+        return classify_new_report(
+            cluster_classifier,
+            input.import_report_title(),
+            input.import_report_body(),
+            input.import_report_domain(),
+            top_k=max(3, min(8, int(input.top_n()))),
         )
-
-    @reactive.calc
-    def nlp_summary():
-        return summarize_visible_clusters(cluster_outputs.summary, nlp_records())
-
-    @reactive.calc
-    def nlp_metrics():
-        return cluster_metric_summary(nlp_records(), cluster_outputs.summary)
 
     @output
     @render.text
@@ -859,79 +832,57 @@ def server(input, output, session):
         return network_figure(network_data(), max_incidents=max(10, int(input.top_n())))
 
     @output
-    @render.text
-    def nlp_kpi_records():
-        return f"{nlp_metrics()['records']:,}"
-
-    @output
-    @render.text
-    def nlp_kpi_incidents():
-        return f"{nlp_metrics()['incidents']:,}"
-
-    @output
-    @render.text
-    def nlp_kpi_clusters():
-        return f"{nlp_metrics()['clusters']:,}"
-
-    @output
-    @render.text
-    def nlp_kpi_largest():
-        return str(nlp_metrics()["largest_cluster"])
-
-    @output
     @render.ui
-    def nlp_cluster_selector_ui():
-        if cluster_outputs.records.empty:
-            command = (
-                "python cluster_incidents.py --data-path processed_data/report_level_processed.csv "
-                "--output-dir cluster_outputs/sbert_report_clusters"
-            )
-            items = cluster_outputs.notes or ["Cluster outputs are unavailable."]
+    def import_prediction_summary():
+        prediction = imported_report_prediction()
+        if not prediction:
             return ui.div(
-                ui.p("No NLP cluster output has been loaded yet.", class_="muted-text"),
-                ui.tags.ul(*[ui.tags.li(item) for item in items[:4]]),
-                ui.p("Run this command, then restart the dashboard:", class_="muted-text"),
-                ui.tags.code(command),
-                class_="note-card note-card-inline",
+                ui.p("Paste a report and press submit to classify it into the closest incident theme.", class_="muted-text"),
+                class_="detail-card",
             )
-        return ui.input_select(
-            "nlp_cluster_filter",
-            "Theme cluster",
-            choices=cluster_choices,
-            selected="__all__",
+        if "error" in prediction:
+            return ui.div(
+                ui.p(prediction["error"], class_="muted-text"),
+                class_="detail-card",
+            )
+
+        risk = prediction.get("predicted_risk", "Not available")
+        sector = prediction.get("predicted_sector", "Not available")
+        failure = prediction.get("predicted_problem", "Not available")
+        risk_confidence = prediction.get("risk_confidence")
+        problem_confidence = prediction.get("problem_confidence")
+        top_risk_text = f"{risk} ({risk_confidence:.1%})" if risk_confidence is not None else risk
+        top_problem_text = f"{failure} ({problem_confidence:.1%})" if problem_confidence is not None else failure
+        return ui.div(
+            ui.h4("Classification result"),
+            ui.p(f"Most likely incident category: {top_risk_text}"),
+            ui.p(f"Most likely related or same problem: {top_problem_text}"),
+            ui.p(f"Likely sector profile: {sector}"),
+            ui.p("The examples below are the nearest historical records supporting this prediction."),
+            class_="detail-card",
         )
 
     @output
     @render_plotly
-    def nlp_cluster_scatter():
-        return cluster_scatter_figure(nlp_records())
-
-    @output
-    @render_plotly
-    def nlp_cluster_sizes():
-        return cluster_size_figure(cluster_outputs.summary, nlp_records())
-
-    @output
-    @render_plotly
-    def nlp_cluster_timeline():
-        return cluster_timeline_figure(nlp_records())
-
-    @output
-    @render_plotly
-    def nlp_cluster_metadata():
-        return cluster_metadata_figure(nlp_records())
+    def import_prediction_bar():
+        prediction = imported_report_prediction()
+        if not prediction:
+            return empty_figure("Paste a report and press submit to see the top predicted incident categories.")
+        if "error" in prediction:
+            return empty_figure(prediction["error"])
+        return prediction_bar_figure(prediction["predictions"])
 
     @output
     @render.data_frame
-    def nlp_cluster_summary_table():
-        frame = cluster_summary_table(cluster_outputs.summary, nlp_records())
-        return DataGrid(frame, summary="NLP cluster summary")
-
-    @output
-    @render.data_frame
-    def nlp_cluster_examples_table():
-        frame = cluster_examples_table(nlp_records())
-        return DataGrid(frame, summary="Example clustered records")
+    def import_prediction_examples():
+        prediction = imported_report_prediction()
+        if not prediction:
+            frame = pd.DataFrame({"message": ["Paste a report and press submit to retrieve similar incident examples."]})
+        elif "error" in prediction:
+            frame = pd.DataFrame({"message": [prediction["error"]]})
+        else:
+            frame = prediction["examples"]
+        return DataGrid(frame, summary="Nearest clustered examples for the imported report")
 
 
 app = App(app_ui, server, static_assets=Path(__file__).parent / "assets")

@@ -23,10 +23,14 @@ It explicitly separates:
 - [app.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/app.py): main Python Shiny app
 - [requirements.txt](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/requirements.txt): Python dependencies
 - [assets/styles.css](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/assets/styles.css): custom light dashboard styling
+- `scripts/`: standalone data-processing, clustering, and model-training entry points
 - [src/data_loader.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/data_loader.py): CSV loading utilities
 - [src/preprocess.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/preprocess.py): robust preprocessing, auto-detection, joins, and aggregates
 - [src/visualizations.py](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/src/visualizations.py): reusable Plotly chart builders
 - [data](/Users/dienmayhaituyet/Documents/Project2_DataVisualization/data): expected data folder
+- `processed_data/`: derived datasets for NLP and modeling workflows
+- `cluster_outputs/`: saved clustering outputs used by the import/classify NLP workflow
+- `model_outputs/`: saved model artifacts and evaluation results
 
 ## Expected Data Files
 The app looks for CSV files in `data/` and is designed to tolerate missing optional files.
@@ -125,13 +129,13 @@ Then open the local URL shown in the terminal.
 Build processed datasets for TF-IDF models, transformer fine-tuning, clustering, and dashboard analysis:
 
 ```bash
-python process_data.py --data-dir data --output-dir processed_data --split 80/20
+python scripts/process_data.py --data-dir data --output-dir processed_data --split 80/20
 ```
 
 For a train/validation/test split:
 
 ```bash
-python process_data.py --data-dir data --output-dir processed_data --split 70/15/15
+python scripts/process_data.py --data-dir data --output-dir processed_data --split 70/15/15
 ```
 
 The pipeline writes:
@@ -148,10 +152,10 @@ Splits are assigned back to `incident_id`, so all reports from the same incident
 Train an explainable TF-IDF + Logistic Regression classifier:
 
 ```bash
-python train_tfidf_logreg.py --data-path processed_data/classification_ready.csv --target mit_risk_domain
+python scripts/train_tfidf_logreg.py --data-path processed_data/classification_ready.csv --target mit_risk_domain
 ```
 
-Change the target with `--target`, or edit `TARGET_LABEL_COLUMN` near the top of `train_tfidf_logreg.py`.
+Change the target with `--target`, or edit `TARGET_LABEL_COLUMN` near the top of `scripts/train_tfidf_logreg.py`.
 
 The baseline saves a `.joblib` model, metrics JSON, classification report CSV, test predictions CSV, and confusion matrix PNG under `model_outputs/tfidf_logreg_<target>/`.
 
@@ -159,13 +163,13 @@ The baseline saves a `.joblib` model, metrics JSON, classification report CSV, t
 Train a transformer classifier for comparison against the TF-IDF baseline:
 
 ```bash
-python train_distilbert.py --data-path processed_data/classification_ready.csv --target mit_risk_domain
+python scripts/train_distilbert.py --data-path processed_data/classification_ready.csv --target mit_risk_domain
 ```
 
 For a quick smoke test before a full run:
 
 ```bash
-python train_distilbert.py --target mit_risk_domain --max-train-samples 32 --max-val-samples 16 --max-test-samples 16 --num-epochs 1
+python scripts/train_distilbert.py --target mit_risk_domain --max-train-samples 32 --max-val-samples 16 --max-test-samples 16 --num-epochs 1
 ```
 
 The script uses `distilbert-base-uncased`, runs on GPU when available, saves the fine-tuned model/tokenizer, label mapping, metrics JSON, classification report CSV, test predictions CSV, and confusion matrix PNG under `model_outputs/distilbert_<target>/`.
@@ -174,13 +178,13 @@ The script uses `distilbert-base-uncased`, runs on GPU when available, saves the
 Discover hidden themes and clusters in incident/report text with Sentence-BERT embeddings:
 
 ```bash
-python cluster_incidents.py --data-path processed_data/report_level_processed.csv --output-dir cluster_outputs/sbert_report_clusters
+python scripts/cluster_incidents.py --data-path processed_data/report_level_processed.csv --output-dir cluster_outputs/sbert_report_clusters
 ```
 
 For a fast smoke test without downloading a transformer model:
 
 ```bash
-python cluster_incidents.py --embedding-backend tfidf-svd --reduction-method pca --cluster-method kmeans --max-records 200 --output-dir /tmp/ai_incident_cluster_smoke
+python scripts/cluster_incidents.py --embedding-backend tfidf-svd --reduction-method pca --cluster-method kmeans --max-records 200 --output-dir /tmp/ai_incident_cluster_smoke
 ```
 
 The clustering pipeline saves dashboard-ready records, cluster summaries, keywords, metadata distributions, 2D scatter plots, cluster-size charts, and a timeline chart when year metadata is available.
