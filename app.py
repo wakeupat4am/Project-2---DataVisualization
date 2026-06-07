@@ -46,7 +46,20 @@ except ImportError:  # pragma: no cover - optional runtime dependency
 
 
 APP_TITLE = "AI Incident Database Explorer"
-APP_SUBTITLE = "Temporal, geographic, and network visual analytics of AI incidents and public attention."
+APP_SUBTITLE = (
+    "A five-chapter story: how documented AI incidents surged, how harm types shifted, "
+    "and how public attention concentrates on a few cases."
+)
+
+
+def story_act_banner(act: str, title: str, question: str, takeaway: str):
+    return ui.div(
+        ui.span(act, class_="story-act-label"),
+        ui.h3(title, class_="story-act-title"),
+        ui.p(question, class_="story-act-question"),
+        ui.p(takeaway, class_="story-act-takeaway"),
+        class_="story-act-banner",
+    )
 
 
 def iso2_to_iso3(value: str | None) -> str | None:
@@ -222,7 +235,7 @@ app_ui = ui.page_sidebar(
     ui.sidebar(
         ui.div(
             ui.h2("Filters", class_="sidebar-title"),
-            ui.p("Use these controls to compare incidents with public attention.", class_="sidebar-note"),
+            ui.p("Filters apply across all story chapters. Incident count = cases; report count = visibility.", class_="sidebar-note"),
             class_="sidebar-header",
         ),
         ui.div("Time & scope", class_="sidebar-section-label"),
@@ -291,9 +304,31 @@ app_ui = ui.page_sidebar(
             ui.output_ui("hero_microstats"),
             class_="hero-card",
         ),
+        ui.div(
+            ui.span("Story timeline", class_="story-timeline-label"),
+            ui.div(
+                ui.span("1 · Surge", class_="story-timeline-step"),
+                ui.span("→", class_="story-timeline-arrow"),
+                ui.span("2 · Shift", class_="story-timeline-step"),
+                ui.span("→", class_="story-timeline-arrow"),
+                ui.span("3 · Spotlight", class_="story-timeline-step"),
+                ui.span("→", class_="story-timeline-arrow"),
+                ui.span("4 · Chorus", class_="story-timeline-step"),
+                ui.span("→", class_="story-timeline-arrow"),
+                ui.span("5 · Connections", class_="story-timeline-step"),
+                class_="story-timeline-row",
+            ),
+            class_="story-timeline",
+        ),
         ui.navset_tab(
             ui.nav_panel(
-                "Overview",
+                "1 · The Surge",
+                story_act_banner(
+                    "Chapter 1",
+                    "The record explodes",
+                    "How visible are AI incidents over time—and is the growth accelerating?",
+                    "Start here: compare incident volume (cases) with report volume (attention).",
+                ),
                 ui.layout_columns(
                     ui.value_box("Total incidents", ui.output_text("kpi_incidents"), theme="bg-gradient-blue-purple"),
                     ui.value_box("Total reports", ui.output_text("kpi_reports"), theme="bg-gradient-indigo-purple"),
@@ -303,42 +338,45 @@ app_ui = ui.page_sidebar(
                 ),
                 ui.layout_columns(
                     ui.card(
-                        ui.card_header("How visible are AI incidents over time?"),
+                        ui.card_header("Incidents vs reports over time"),
                         output_widget("overview_time"),
-                        ui.p("Incidents and reports move together, but they are not the same metric.", class_="chart-note"),
+                        ui.p("Dark line = recorded cases. Teal line = linked media coverage.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     ui.card(
-                        ui.card_header("Smoothed trend"),
+                        ui.card_header("Smoothed acceleration"),
                         output_widget("overview_rolling"),
-                        ui.p("The rolling average makes longer-term acceleration easier to read.", class_="chart-note"),
+                        ui.p("The 3-year rolling average highlights the long-term surge beyond noisy single years.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     col_widths=[7, 5],
                 ),
                 ui.card(
-                    ui.card_header("Filtered incidents"),
+                    ui.card_header("Evidence table — filtered incidents"),
                     ui.output_data_frame("incident_table"),
-                    ui.p(
-                        "Sorted by year (newest first). Use later tabs to explore attention and risk mix.",
-                        class_="chart-note",
-                    ),
+                    ui.p("Sorted by year (newest first). Chapter 3 explores which cases drew the most attention.", class_="chart-note"),
                     class_="soft-card",
                 ),
             ),
             ui.nav_panel(
-                "Risk Evolution",
+                "2 · The Shift",
+                story_act_banner(
+                    "Chapter 2",
+                    "The villain changes",
+                    "Which AI risks dominate—and how has the mix shifted from failures to misuse?",
+                    "The plot twist: safety and discrimination led early years; misuse and misinformation rise in recent years.",
+                ),
                 ui.layout_columns(
                     ui.card(
-                        ui.card_header("Year × Risk category heatmap"),
+                        ui.card_header("Year × risk category heatmap"),
                         output_widget("risk_heatmap"),
-                        ui.p("This view answers which risks become more visible over time.", class_="chart-note"),
+                        ui.p("Scan across years: where does each harm type intensify?", class_="chart-note"),
                         class_="soft-card",
                     ),
                     ui.card(
                         ui.card_header("Composition over time"),
                         output_widget("risk_area"),
-                        ui.p("Area shares show how the mix of AI risks changes rather than only the volume.", class_="chart-note"),
+                        ui.p("Shares show the changing recipe of harm—not just rising totals.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     col_widths=[6, 6],
@@ -347,32 +385,38 @@ app_ui = ui.page_sidebar(
                     ui.card(
                         ui.card_header("Risk rank dynamics"),
                         output_widget("risk_bump"),
-                        ui.p("The bump chart shows when categories move up or down in prominence.", class_="chart-note"),
+                        ui.p("When does misuse overtake safety failures in the rankings?", class_="chart-note"),
                         class_="soft-card",
                     ),
                     ui.card(
-                        ui.card_header("Filtered category summary"),
+                        ui.card_header("Category totals (filtered)"),
                         ui.output_data_frame("risk_summary_table"),
-                        ui.p("The current risk filter doubles as the main interaction for narrowing the incident list.", class_="chart-note"),
+                        ui.p("Use the sidebar risk filter to isolate one harm type across all chapters.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     col_widths=[8, 4],
                 ),
             ),
             ui.nav_panel(
-                "Attention & Sources",
+                "3 · The Spotlight",
+                story_act_banner(
+                    "Chapter 3",
+                    "A few cases swallow the conversation",
+                    "Is public attention spread evenly—or concentrated on headline incidents?",
+                    "Most incidents have few linked reports; a small elite absorbs most visibility.",
+                ),
                 ui.layout_columns(
                     ui.card(
-                        ui.card_header("Top incidents by public attention"),
+                        ui.card_header("Top incidents by linked reports"),
                         output_widget("attention_bar"),
-                        ui.p("Linked report count acts as a proxy for visibility and media attention.", class_="chart-note"),
+                        ui.p("Report count = proxy for media attention, not harm severity.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     ui.card(
-                        ui.card_header("Attention detail"),
+                        ui.card_header("Case study — incident detail"),
                         ui.output_ui("attention_selector_ui"),
                         ui.output_ui("incident_detail_card"),
-                        ui.p("Choose an incident to inspect its title, timing, description, and linked reports.", class_="chart-note"),
+                        ui.p("Pick a headline case: title, year, risk label, and source URLs.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     col_widths=[7, 5],
@@ -381,32 +425,51 @@ app_ui = ui.page_sidebar(
                     ui.card(
                         ui.card_header("Long-tail distribution"),
                         output_widget("attention_hist"),
-                        ui.p("Most incidents receive limited attention while a few dominate the conversation.", class_="chart-note"),
+                        ui.p("The crowd lives on the left: one or two reports per incident.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     ui.card(
-                        ui.card_header("Attention concentration"),
+                        ui.card_header("Attention concentration (Lorenz curve)"),
                         output_widget("lorenz_curve"),
-                        ui.p("The Lorenz curve highlights whether reporting is evenly distributed or highly concentrated.", class_="chart-note"),
+                        ui.p("Curve above the diagonal = inequality: few incidents, many reports.", class_="chart-note"),
                         class_="soft-card",
                     ),
-                    ui.card(
-                        ui.card_header("Source domains"),
-                        output_widget("source_bar"),
-                        ui.p("This shows which publishers appear most often in the evidence layer.", class_="chart-note"),
-                        class_="soft-card",
-                    ),
-                    col_widths=[4, 4, 4],
+                    col_widths=[6, 6],
                 ),
             ),
             ui.nav_panel(
-                "Geographic & Advanced View",
+                "4 · The Chorus",
+                story_act_banner(
+                    "Chapter 4",
+                    "Who tells the story?",
+                    "Which news domains appear most often in the linked evidence?",
+                    "A concentrated set of publishers shapes what enters the public record.",
+                ),
+                ui.card(
+                    ui.card_header("Top source domains"),
+                    output_widget("source_bar"),
+                    ui.p(
+                        "English-language outlets such as major newspapers and tech press dominate linked reporting. "
+                        "Toggle metric in the sidebar to count by incidents or reports.",
+                        class_="chart-note",
+                    ),
+                    class_="soft-card source-card",
+                ),
+            ),
+            ui.nav_panel(
+                "5 · Connections",
+                story_act_banner(
+                    "Chapter 5",
+                    "Where it happens—and how it all links",
+                    "Geography is incomplete; the network shows how incidents connect to risks and sources.",
+                    "Treat the map as directional (~18% location coverage). The network is the connective payoff.",
+                ),
                 ui.layout_columns(
                     ui.card(
-                        ui.card_header("Where do AI incidents appear?"),
+                        ui.card_header("Geographic view (limited coverage)"),
                         output_widget("geo_map"),
                         ui.p(
-                            "Geographic results depend on available location metadata. Missing or ambiguous locations are excluded.",
+                            "Only a fraction of incidents have reliable location. US-heavy results reflect documentation bias.",
                             class_="chart-note",
                         ),
                         class_="soft-card",
@@ -414,15 +477,19 @@ app_ui = ui.page_sidebar(
                     ui.card(
                         ui.card_header("Top countries / destinations"),
                         output_widget("country_bar"),
-                        ui.p("Use this together with the map to compare geographic concentration.", class_="chart-note"),
+                        ui.p("Compare with the map. Few countries have enough cases for strong comparisons.", class_="chart-note"),
                         class_="soft-card",
                     ),
                     col_widths=[8, 4],
                 ),
                 ui.card(
-                    ui.card_header("Incident–Risk–Source network"),
+                    ui.card_header("Incident–risk–source network"),
                     output_widget("network_graph"),
-                    ui.p("This advanced view connects incidents to both risk categories and reporting domains.", class_="chart-note"),
+                    ui.p(
+                        "Dark = incidents · Teal = risk categories · Gray = source domains. "
+                        "Hover to trace how a case links to harm type and media.",
+                        class_="chart-note",
+                    ),
                     class_="soft-card network-card",
                 ),
             ),

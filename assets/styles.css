@@ -125,6 +125,92 @@ body {
   margin-bottom: 1rem;
 }
 
+.story-timeline {
+  margin-bottom: 0.85rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+}
+
+.story-timeline-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.story-timeline-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+}
+
+.story-timeline-step {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid #c5e6e3;
+  background: linear-gradient(180deg, #f4fbfa, #e8f6f4);
+  color: #19494a;
+  font-size: 0.82rem;
+  font-weight: 650;
+  padding: 0.35rem 0.72rem;
+}
+
+.story-timeline-arrow {
+  color: #9aadb8;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.story-act-banner {
+  margin-bottom: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid #c5e6e3;
+  background: linear-gradient(135deg, rgba(191, 232, 228, 0.35), rgba(255, 255, 255, 0.95) 55%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.story-act-label {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--teal-strong);
+  color: #0f2f30;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.story-act-title {
+  font-size: 1.45rem;
+  font-weight: 760;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.35rem;
+}
+
+.story-act-question {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  margin: 0 0 0.35rem;
+  max-width: 58rem;
+}
+
+.story-act-takeaway {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0;
+  max-width: 58rem;
+}
+
 .micro-card-row {
   display: flex;
   flex-wrap: wrap;
@@ -224,6 +310,12 @@ body {
 .network-card .plotly,
 .network-card .shiny-bound-output {
   min-height: 540px !important;
+}
+
+.source-card .html-fill-item,
+.source-card .plotly,
+.source-card .shiny-bound-output {
+  min-height: 520px !important;
 }
 
 .bslib-value-box {

@@ -61,31 +61,31 @@ The app automatically:
   - top source domains
   - country/location counts
 
-## Dashboard Tabs
-### 1. Overview
-Shows the big picture:
+## Dashboard Story Chapters (tabs)
+The dashboard follows a five-chapter narrative timeline:
+
+### 1 · The Surge
 - KPI cards
 - dual-line trend for incidents vs reports
 - rolling average trend
 - filtered incident table
 
-### 2. Risk Evolution
-Shows how categories change over time:
+### 2 · The Shift
 - year × risk category heatmap
 - stacked area composition chart
 - bump/rank chart
 - risk summary table
 
-### 3. Attention & Sources
-Shows inequality in public attention:
+### 3 · The Spotlight
 - top incidents by linked reports
-- long-tail histogram of reports per incident
-- top source domains
-- Lorenz curve for concentration
 - incident detail card
+- long-tail histogram
+- Lorenz curve for concentration
 
-### 4. Geographic & Advanced View
-Shows spatial and relational structure:
+### 4 · The Chorus
+- top source domains
+
+### 5 · Connections
 - world map / globe projection
 - top countries side chart
 - incident–risk–source network graph
